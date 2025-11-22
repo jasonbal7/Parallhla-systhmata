@@ -1,0 +1,50 @@
+--------Polynomial Multiplication Benchmark--------
+
+Testing degree = 10000
+-------------------------------------
+Running: degree1 = 10000, degree2 = 10000, threads = 2 4 6 8 10 12
+Generated polynomials in 0.000 seconds
+Sequential multiplication took 0.280 seconds
+Parallel multiplication with 2 threads took 0.194 seconds
+Match baseline: yes
+---
+Parallel multiplication with 4 threads took 0.103 seconds
+Match baseline: yes
+---
+Parallel multiplication with 6 threads took 0.086 seconds
+Match baseline: yes
+---
+Parallel multiplication with 8 threads took 0.075 seconds
+Match baseline: yes
+---
+Parallel multiplication with 10 threads took 0.062 seconds
+Match baseline: yes
+---
+Parallel multiplication with 12 threads took 0.065 seconds
+Match baseline: yes
+---
+
+Testing degree = 100000
+-------------------------------------
+Running: degree1 = 100000, degree2 = 100000, threads = 2 4 6 8 10 12
+Generated polynomials in 0.003 seconds
+Sequential multiplication took 28.299 seconds
+Parallel multiplication with 2 threads took 17.822 seconds
+Match baseline: yes
+---
+Parallel multiplication with 4 threads took 12.056 seconds
+Match baseline: yes
+---
+Parallel multiplication with 6 threads took 8.622 seconds
+Match baseline: yes
+---
+Parallel multiplication with 8 threads took 6.894 seconds
+Match baseline: yes
+---
+Parallel multiplication with 10 threads took 5.804 seconds
+Match baseline: yes
+---
+Parallel multiplication with 12 threads took 6.007 seconds
+Match baseline: yes
+---
+

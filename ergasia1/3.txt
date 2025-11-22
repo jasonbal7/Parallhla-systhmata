@@ -1,0 +1,52 @@
+--------Array Statistics Benchmark--------
+
+Running: size = 10000
+Arrays creation time: 0.000526 seconds
+Parallel computation time: 0.000549 seconds
+Array 0 non-zero count: 9014
+Array 1 non-zero count: 8994
+Array 2 non-zero count: 8952
+Array 3 non-zero count: 9012
+Serial computation time: 0.000017 seconds
+Results match between parallel and serial computations.
+
+Running: size = 50000
+Arrays creation time: 0.003010 seconds
+Parallel computation time: 0.000519 seconds
+Array 0 non-zero count: 44988
+Array 1 non-zero count: 45024
+Array 2 non-zero count: 44977
+Array 3 non-zero count: 44913
+Serial computation time: 0.000075 seconds
+Results match between parallel and serial computations.
+
+Running: size = 100000
+Arrays creation time: 0.006018 seconds
+Parallel computation time: 0.000650 seconds
+Array 0 non-zero count: 90012
+Array 1 non-zero count: 89890
+Array 2 non-zero count: 89938
+Array 3 non-zero count: 89950
+Serial computation time: 0.000156 seconds
+Results match between parallel and serial computations.
+
+Running: size = 250000
+Arrays creation time: 0.019125 seconds
+Parallel computation time: 0.000533 seconds
+Array 0 non-zero count: 224885
+Array 1 non-zero count: 224879
+Array 2 non-zero count: 225151
+Array 3 non-zero count: 224979
+Serial computation time: 0.000464 seconds
+Results match between parallel and serial computations.
+
+Running: size = 100000000
+Arrays creation time: 6.242411 seconds
+Parallel computation time: 0.066439 seconds
+Array 0 non-zero count: 89996635
+Array 1 non-zero count: 89999145
+Array 2 non-zero count: 89999845
+Array 3 non-zero count: 90004179
+Serial computation time: 0.189298 seconds
+Results match between parallel and serial computations.
+
