@@ -15,9 +15,6 @@ all: $(TARGETS)
 3: exercise3/3.c
 	$(CC) $(CFLAGS) $< -o $@ $(LDLIBS)
 
-4: exercise4/4.c
-	$(CC) $(CFLAGS) $< -o $@ $(LDLIBS)
-
 .PHONY: all clean
 
 clean:
