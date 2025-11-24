@@ -2,23 +2,20 @@ CC ?= gcc
 CFLAGS ?= -O2 -Wall -Wextra -std=c17
 LDLIBS = -pthread
 
-TARGETS = 1 2 3 4 5
+TARGETS = 1 2 3 4
 
 all: $(TARGETS)
 
-1: 1.c
+1: exercise1/1.c
 	$(CC) $(CFLAGS) $< -o $@ $(LDLIBS)
 
-2: 2.c
+2: exercise2/2.c
 	$(CC) $(CFLAGS) $< -o $@ $(LDLIBS)
 
-3: 3.c
+3: exercise3/3.c
 	$(CC) $(CFLAGS) $< -o $@ $(LDLIBS)
 
-4: 4.c
-	$(CC) $(CFLAGS) $< -o $@ $(LDLIBS)
-
-5: 5.c
+4: exercise4/4.c
 	$(CC) $(CFLAGS) $< -o $@ $(LDLIBS)
 
 .PHONY: all clean
