@@ -43,10 +43,8 @@ int money_transfer_transaction(unsigned int *seed)
         array[i2] += amount;
         return 1;
     }
-    else {
-        printf("Money transfer transaction failed: insufficient funds in account %d\n", i1);
-        return 0;
-    }
+    //printf("Money transfer transaction failed: insufficient funds in account %d\n", i1);
+    return 0;
 }
 
 int money_transfer_transaction_fg(unsigned int *seed)
@@ -75,7 +73,7 @@ int money_transfer_transaction_fg(unsigned int *seed)
 
     pthread_mutex_unlock(&account_mutex[second]);
     pthread_mutex_unlock(&account_mutex[first]);
-    printf("Money transfer transaction failed: insufficient funds in account %d\n", i1);
+    //printf("Money transfer transaction failed: insufficient funds in account %d\n", i1);
     return 0;
 }
 
@@ -105,30 +103,39 @@ int money_transfer_transaction_rw_fg(unsigned int *seed)
 
     pthread_rwlock_unlock(&account_rwlock[second]);
     pthread_rwlock_unlock(&account_rwlock[first]);
-    printf("Money transfer transaction failed: insufficient funds in account %d\n", i1);
+    //printf("Money transfer transaction failed: insufficient funds in account %d\n", i1);
     return 0;
 }
 
-void show_balance_transaction(unsigned int *seed)
+int show_balance_transaction(unsigned int *seed)
 {
     int index = choose_random_index(size, seed);
-    printf("Account %d balance: %d\n", index, array[index]);
+    //usleep(100);
+    return array[index];
 }
 
-void show_balance_transaction_fg(unsigned int *seed)
+int show_balance_transaction_fg(unsigned int *seed)
 {
     int index = choose_random_index(size, seed);
 
     pthread_mutex_lock(&account_mutex[index]);
-    printf("Account %d balance: %d\n", index, array[index]);
+    int balance = array[index];
     pthread_mutex_unlock(&account_mutex[index]);
+
+    //usleep(100);
+    
+    return balance;
 }
 
-void show_balance_transaction_rw_fg(unsigned int *seed)
+int show_balance_transaction_rw_fg(unsigned int *seed)
 {
     int index = choose_random_index(size, seed);
 
     pthread_rwlock_rdlock(&account_rwlock[index]);
-    printf("Account %d balance: %d\n", index, array[index]);
+    int balance = array[index];
     pthread_rwlock_unlock(&account_rwlock[index]);
+
+    //usleep(100);
+
+    return balance;
 }
