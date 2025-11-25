@@ -1,7 +1,13 @@
 #!/bin/bash
 
-PROG="./build/1"
-OUTPUT_FILE="exercise1/1.txt"
+SCRIPT_DIR=$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)
+ROOT_DIR=$(cd "$SCRIPT_DIR/.." && pwd)
+RESULTS_DIR="$ROOT_DIR/results"
+
+mkdir -p "$RESULTS_DIR"
+
+PROG="$ROOT_DIR/build/1.out"
+OUTPUT_FILE="$RESULTS_DIR/1.txt"
 
 DEGREES=(10000 100000)
 THREADS=(2 4 6 8 10 12)
@@ -21,7 +27,12 @@ for deg in "${DEGREES[@]}"; do
         echo "" | tee -a "$OUTPUT_FILE"
         echo "Run $run:" | tee -a "$OUTPUT_FILE"
 
-        $PROG "$deg" "$deg" "${THREADS[@]}" | tee -a "$OUTPUT_FILE"
+        if [ ! -x "$PROG" ]; then
+            echo "Error: executable '$PROG' not found. Did you run make?" | tee -a "$OUTPUT_FILE"
+            exit 1
+        fi
+
+        "$PROG" "$deg" "$deg" "${THREADS[@]}" | tee -a "$OUTPUT_FILE"
     done
 
     echo "" | tee -a "$OUTPUT_FILE"

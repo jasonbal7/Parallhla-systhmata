@@ -1,0 +1,155 @@
+--------Synchronization Benchmark--------
+
+Testing iterations = 100000
+-------------------------------------
+Running: iterations = 100000, threads = 2
+Final value calculated with mutex lock: 200000
+Elapsed time with mutex lock: 0.005464 seconds
+Final value calculated with rwlock: 200000
+Elapsed time with rwlock: 0.009928 seconds
+Final value calculated with atomic operations: 200000
+Elapsed time with atomic operations: 0.001495 seconds
+
+Running: iterations = 100000, threads = 4
+Final value calculated with mutex lock: 400000
+Elapsed time with mutex lock: 0.012741 seconds
+Final value calculated with rwlock: 400000
+Elapsed time with rwlock: 0.021114 seconds
+Final value calculated with atomic operations: 400000
+Elapsed time with atomic operations: 0.002991 seconds
+
+Running: iterations = 100000, threads = 6
+Final value calculated with mutex lock: 600000
+Elapsed time with mutex lock: 0.021065 seconds
+Final value calculated with rwlock: 600000
+Elapsed time with rwlock: 0.036847 seconds
+Final value calculated with atomic operations: 600000
+Elapsed time with atomic operations: 0.004713 seconds
+
+Running: iterations = 100000, threads = 8
+Final value calculated with mutex lock: 800000
+Elapsed time with mutex lock: 0.030609 seconds
+Final value calculated with rwlock: 800000
+Elapsed time with rwlock: 0.048845 seconds
+Final value calculated with atomic operations: 800000
+Elapsed time with atomic operations: 0.006482 seconds
+
+Running: iterations = 100000, threads = 10
+Final value calculated with mutex lock: 1000000
+Elapsed time with mutex lock: 0.038473 seconds
+Final value calculated with rwlock: 1000000
+Elapsed time with rwlock: 0.062910 seconds
+Final value calculated with atomic operations: 1000000
+Elapsed time with atomic operations: 0.008130 seconds
+
+Running: iterations = 100000, threads = 12
+Final value calculated with mutex lock: 1200000
+Elapsed time with mutex lock: 0.042715 seconds
+Final value calculated with rwlock: 1200000
+Elapsed time with rwlock: 0.072161 seconds
+Final value calculated with atomic operations: 1200000
+Elapsed time with atomic operations: 0.009452 seconds
+
+
+Testing iterations = 500000
+-------------------------------------
+Running: iterations = 500000, threads = 2
+Final value calculated with mutex lock: 1000000
+Elapsed time with mutex lock: 0.033010 seconds
+Final value calculated with rwlock: 1000000
+Elapsed time with rwlock: 0.052758 seconds
+Final value calculated with atomic operations: 1000000
+Elapsed time with atomic operations: 0.007217 seconds
+
+Running: iterations = 500000, threads = 4
+Final value calculated with mutex lock: 2000000
+Elapsed time with mutex lock: 0.068363 seconds
+Final value calculated with rwlock: 2000000
+Elapsed time with rwlock: 0.119603 seconds
+Final value calculated with atomic operations: 2000000
+Elapsed time with atomic operations: 0.016614 seconds
+
+Running: iterations = 500000, threads = 6
+Final value calculated with mutex lock: 3000000
+Elapsed time with mutex lock: 0.124247 seconds
+Final value calculated with rwlock: 3000000
+Elapsed time with rwlock: 0.198015 seconds
+Final value calculated with atomic operations: 3000000
+Elapsed time with atomic operations: 0.024248 seconds
+
+Running: iterations = 500000, threads = 8
+Final value calculated with mutex lock: 4000000
+Elapsed time with mutex lock: 0.156718 seconds
+Final value calculated with rwlock: 4000000
+Elapsed time with rwlock: 0.270699 seconds
+Final value calculated with atomic operations: 4000000
+Elapsed time with atomic operations: 0.031119 seconds
+
+Running: iterations = 500000, threads = 10
+Final value calculated with mutex lock: 5000000
+Elapsed time with mutex lock: 0.195730 seconds
+Final value calculated with rwlock: 5000000
+Elapsed time with rwlock: 0.309140 seconds
+Final value calculated with atomic operations: 5000000
+Elapsed time with atomic operations: 0.038583 seconds
+
+Running: iterations = 500000, threads = 12
+Final value calculated with mutex lock: 6000000
+Elapsed time with mutex lock: 0.213216 seconds
+Final value calculated with rwlock: 6000000
+Elapsed time with rwlock: 0.353692 seconds
+Final value calculated with atomic operations: 6000000
+Elapsed time with atomic operations: 0.047519 seconds
+
+
+Testing iterations = 1000000
+-------------------------------------
+Running: iterations = 1000000, threads = 2
+Final value calculated with mutex lock: 2000000
+Elapsed time with mutex lock: 0.070024 seconds
+Final value calculated with rwlock: 2000000
+Elapsed time with rwlock: 0.097985 seconds
+Final value calculated with atomic operations: 2000000
+Elapsed time with atomic operations: 0.013622 seconds
+
+Running: iterations = 1000000, threads = 4
+Final value calculated with mutex lock: 4000000
+Elapsed time with mutex lock: 0.144320 seconds
+Final value calculated with rwlock: 4000000
+Elapsed time with rwlock: 0.240803 seconds
+Final value calculated with atomic operations: 4000000
+Elapsed time with atomic operations: 0.028044 seconds
+
+Running: iterations = 1000000, threads = 6
+Final value calculated with mutex lock: 6000000
+Elapsed time with mutex lock: 0.238665 seconds
+Final value calculated with rwlock: 6000000
+Elapsed time with rwlock: 0.419786 seconds
+Final value calculated with atomic operations: 6000000
+Elapsed time with atomic operations: 0.043646 seconds
+
+Running: iterations = 1000000, threads = 8
+Final value calculated with mutex lock: 8000000
+Elapsed time with mutex lock: 0.313634 seconds
+Final value calculated with rwlock: 8000000
+Elapsed time with rwlock: 0.524915 seconds
+Final value calculated with atomic operations: 8000000
+Elapsed time with atomic operations: 0.062066 seconds
+
+Running: iterations = 1000000, threads = 10
+Final value calculated with mutex lock: 10000000
+Elapsed time with mutex lock: 0.373251 seconds
+Final value calculated with rwlock: 10000000
+Elapsed time with rwlock: 0.625853 seconds
+Final value calculated with atomic operations: 10000000
+Elapsed time with atomic operations: 0.075594 seconds
+
+Running: iterations = 1000000, threads = 12
+Final value calculated with mutex lock: 12000000
+Elapsed time with mutex lock: 0.439873 seconds
+Final value calculated with rwlock: 12000000
+Elapsed time with rwlock: 0.703852 seconds
+Final value calculated with atomic operations: 12000000
+Elapsed time with atomic operations: 0.092395 seconds
+
+

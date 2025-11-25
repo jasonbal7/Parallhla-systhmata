@@ -16,6 +16,8 @@ except ImportError as exc:  # pragma: no cover
     ) from exc
 
 Row = Tuple[int, int, int, int, str, str, float]
+SCRIPT_DIR = pathlib.Path(__file__).resolve().parent
+DEFAULT_TABLE = SCRIPT_DIR.parent / "results" / "4.txt"
 
 
 def parse_table(path: pathlib.Path) -> List[Row]:
@@ -89,8 +91,8 @@ def main() -> None:
     parser.add_argument(
         "table",
         nargs="?",
-        default="4.txt",
-        help="Path to the results table (default: 4.txt)",
+        default=str(DEFAULT_TABLE),
+        help=f"Path to the results table (default: {DEFAULT_TABLE})",
     )
     parser.add_argument(
         "--output-dir",

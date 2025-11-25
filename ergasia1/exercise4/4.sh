@@ -1,7 +1,14 @@
 #!/bin/bash
 
-PROG="./4"
-OUT="4.txt"
+SCRIPT_DIR=$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)
+ROOT_DIR=$(cd "$SCRIPT_DIR/.." && pwd)
+RESULTS_DIR="$ROOT_DIR/results"
+
+mkdir -p "$RESULTS_DIR"
+
+PROG="$ROOT_DIR/build/4.out"
+OUT="$RESULTS_DIR/4.txt"
+PLOT_SCRIPT="$SCRIPT_DIR/plot_results.py"
 RUNS=4
 
 SIZES=(1000000 5000000 10000000)
@@ -28,7 +35,12 @@ for th in "${THREADS[@]}"; do
     total_fg=0
 
     for run in $(seq 1 $RUNS); do
-        output=$($PROG "$size" "$tpt" "$pct" "$lock" "$th")
+        if [ ! -x "$PROG" ]; then
+            echo "Error: executable '$PROG' not found or not executable. Did you run make?" >&2
+            exit 1
+        fi
+
+        output=$("$PROG" "$size" "$tpt" "$pct" "$lock" "$th")
         mapfile -t times < <(printf '%s\n' "$output" | awk '/^TIME /{print $2}')
 
         if [ "${#times[@]}" -lt 2 ]; then
@@ -62,25 +74,14 @@ printf "%s\n" "$header_border" >> "$OUT"
 echo "Experiments complete. Results in $OUT"
 
 if command -v python3 >/dev/null 2>&1; then
-    if python3 - <<'PYCODE'
-import importlib.util
-import pathlib
-
-plotter = pathlib.Path("plot_results.py")
-if not plotter.exists():
-    raise SystemExit(1)
-
-spec = importlib.util.spec_from_file_location("plot_results", plotter)
-if spec is None or spec.loader is None:
-    raise SystemExit(1)
-module = importlib.util.module_from_spec(spec)
-spec.loader.exec_module(module)
-module.main()
-PYCODE
-    then
-        echo "Generated plots in the default output directory."
+    if [ -f "$PLOT_SCRIPT" ]; then
+        if python3 "$PLOT_SCRIPT" "$OUT" --output-dir "$SCRIPT_DIR/plots"; then
+            echo "Generated plots in $SCRIPT_DIR/plots."
+        else
+            echo "Skipping plot generation (matplotlib missing or error occurred)." >&2
+        fi
     else
-        echo "Skipping plot generation (matplotlib missing or error occurred)." >&2
+        echo "Plot script '$PLOT_SCRIPT' not found; skipping plot generation." >&2
     fi
 else
     echo "Python3 not found; skipping plot generation." >&2

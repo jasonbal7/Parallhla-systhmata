@@ -1,10 +1,16 @@
 #!/bin/bash
 
-PROG1="./build/5.1"
-PROG2="./build/5.2"
-PROG3="./build/5.3"
+SCRIPT_DIR=$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)
+ROOT_DIR=$(cd "$SCRIPT_DIR/.." && pwd)
+RESULTS_DIR="$ROOT_DIR/results"
 
-OUTPUT_FILE="5.txt"
+mkdir -p "$RESULTS_DIR"
+
+PROG1="$ROOT_DIR/build/5.1.out"
+PROG2="$ROOT_DIR/build/5.2.out"
+PROG3="$ROOT_DIR/build/5.3.out"
+
+OUTPUT_FILE="$RESULTS_DIR/5.txt"
 
 THREADS=(2 4 8 16 32);
 ITERATIONS=(1000 10000 40000)
@@ -20,6 +26,10 @@ run_test() {
     local iterations=$4
 
     echo "Running $barrier_type with $threads threads and $iterations iterations" | tee -a "$OUTPUT_FILE"
+    if [ ! -x "$prog" ]; then
+        echo "Error: executable '$prog' not found or not executable. Did you run make?" | tee -a "$OUTPUT_FILE"
+        exit 1
+    fi
     local total=0
 
     for run in $(seq 1 $RUNS); do
