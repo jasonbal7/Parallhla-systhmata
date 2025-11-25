@@ -12,8 +12,8 @@ int money_transfer_transaction(unsigned int *seed);
 int money_transfer_transaction_fg(unsigned int *seed);
 int money_transfer_transaction_rw_fg(unsigned int *seed);
 
-void show_balance_transaction(unsigned int *seed);
-void show_balance_transaction_fg(unsigned int *seed);
-void show_balance_transaction_rw_fg(unsigned int *seed);
+int show_balance_transaction(unsigned int *seed);
+int show_balance_transaction_fg(unsigned int *seed);
+int show_balance_transaction_rw_fg(unsigned int *seed);
 
 #endif

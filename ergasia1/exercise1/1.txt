@@ -47,4 +47,3 @@ Match baseline: yes
 Parallel multiplication with 12 threads took 6.007 seconds
 Match baseline: yes
 ---
-

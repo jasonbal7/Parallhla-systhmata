@@ -172,26 +172,19 @@ int main(int argc, char *argv[])
     money_trans = total_trans - balance_trans;
     generate_random_array(array, size);
 
-    printf("Total size: %d\n", size);
-    printf("Transactions per thread: %d\n", trans_per_thread);
-    printf("Total transactions: %d\n", total_trans);
-    printf("Total balance transactions: %d\n", balance_trans);
-    printf("Total money transfer transactions: %d\n", money_trans);
-
-
     if (strcmp(lock_type, "mutex") == 0) {
         printf("\n=== Running COARSE-GRAINED MUTEX ===\n");
         double start = now_seconds();
         run_with_mutex_cg();
         double end = now_seconds();
-        printf("Time taken: %.6f seconds\n", end - start);
+        printf("TIME %.6f seconds\n", end - start);
         reset_global_vars();
 
         printf("\n=== Running FINE-GRAINED MUTEX ===\n");
         start = now_seconds();
         run_with_mutex_fg();
         end = now_seconds();
-        printf("Time taken: %.6f seconds\n", end - start);
+        printf("TIME %.6f seconds\n", end - start);
         reset_global_vars();
     }
     else if (strcmp(lock_type, "rwlock") == 0) {
@@ -199,14 +192,14 @@ int main(int argc, char *argv[])
         double start = now_seconds();
         run_with_rwlock_cg();
         double end = now_seconds();
-        printf("Time taken: %.6f seconds\n", end - start);
+        printf("TIME %.6f seconds\n", end - start);
         reset_global_vars();
 
         printf("\n=== Running FINE-GRAINED RWLOCK ===\n");
         start = now_seconds();
         run_with_rwlock_fg();
         end = now_seconds();
-        printf("Time taken: %.6f seconds\n", end - start);
+        printf("TIME %.6f seconds\n", end - start);
         reset_global_vars();
     }
     else {
