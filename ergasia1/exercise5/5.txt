@@ -1,0 +1,499 @@
+--------Barrier Benchmark--------
+
+Running pthread_barrier (5.1) with 2 threads and 1000 iterations
+ Run 1:
+[1] Pthreads_barrier with 2 threads took 0.020 seconds
+ Run 2:
+[1] Pthreads_barrier with 2 threads took 0.014 seconds
+ Run 3:
+[1] Pthreads_barrier with 2 threads took 0.014 seconds
+ Run 4:
+[1] Pthreads_barrier with 2 threads took 0.014 seconds
+
+pthread_barrier (5.1) 2 1000 0.0155
+Running mutex_cond_barrier (5.2) with 2 threads and 1000 iterations
+ Run 1:
+[2] Mutex_Condition_Barrier with 2 threads took 0.015 seconds
+ Run 2:
+[2] Mutex_Condition_Barrier with 2 threads took 0.014 seconds
+ Run 3:
+[2] Mutex_Condition_Barrier with 2 threads took 0.015 seconds
+ Run 4:
+[2] Mutex_Condition_Barrier with 2 threads took 0.014 seconds
+
+mutex_cond_barrier (5.2) 2 1000 0.0145
+Running sense_reversal_barrier (5.3) with 2 threads and 1000 iterations
+ Run 1:
+[3] Sense-reversal Barrier with 2 threads took 0.000 seconds
+ Run 2:
+[3] Sense-reversal Barrier with 2 threads took 0.000 seconds
+ Run 3:
+[3] Sense-reversal Barrier with 2 threads took 0.000 seconds
+ Run 4:
+[3] Sense-reversal Barrier with 2 threads took 0.000 seconds
+
+sense_reversal_barrier (5.3) 2 1000 0.0000
+Running pthread_barrier (5.1) with 2 threads and 10000 iterations
+ Run 1:
+[1] Pthreads_barrier with 2 threads took 0.141 seconds
+ Run 2:
+[1] Pthreads_barrier with 2 threads took 0.138 seconds
+ Run 3:
+[1] Pthreads_barrier with 2 threads took 0.132 seconds
+ Run 4:
+[1] Pthreads_barrier with 2 threads took 0.118 seconds
+
+pthread_barrier (5.1) 2 10000 0.1323
+Running mutex_cond_barrier (5.2) with 2 threads and 10000 iterations
+ Run 1:
+[2] Mutex_Condition_Barrier with 2 threads took 0.148 seconds
+ Run 2:
+[2] Mutex_Condition_Barrier with 2 threads took 0.144 seconds
+ Run 3:
+[2] Mutex_Condition_Barrier with 2 threads took 0.141 seconds
+ Run 4:
+[2] Mutex_Condition_Barrier with 2 threads took 0.137 seconds
+
+mutex_cond_barrier (5.2) 2 10000 0.1425
+Running sense_reversal_barrier (5.3) with 2 threads and 10000 iterations
+ Run 1:
+[3] Sense-reversal Barrier with 2 threads took 0.001 seconds
+ Run 2:
+[3] Sense-reversal Barrier with 2 threads took 0.003 seconds
+ Run 3:
+[3] Sense-reversal Barrier with 2 threads took 0.002 seconds
+ Run 4:
+[3] Sense-reversal Barrier with 2 threads took 0.003 seconds
+
+sense_reversal_barrier (5.3) 2 10000 0.0023
+Running pthread_barrier (5.1) with 2 threads and 40000 iterations
+ Run 1:
+[1] Pthreads_barrier with 2 threads took 0.527 seconds
+ Run 2:
+[1] Pthreads_barrier with 2 threads took 0.510 seconds
+ Run 3:
+[1] Pthreads_barrier with 2 threads took 0.560 seconds
+ Run 4:
+[1] Pthreads_barrier with 2 threads took 0.515 seconds
+
+pthread_barrier (5.1) 2 40000 0.5280
+Running mutex_cond_barrier (5.2) with 2 threads and 40000 iterations
+ Run 1:
+[2] Mutex_Condition_Barrier with 2 threads took 0.552 seconds
+ Run 2:
+[2] Mutex_Condition_Barrier with 2 threads took 0.567 seconds
+ Run 3:
+[2] Mutex_Condition_Barrier with 2 threads took 0.595 seconds
+ Run 4:
+[2] Mutex_Condition_Barrier with 2 threads took 0.557 seconds
+
+mutex_cond_barrier (5.2) 2 40000 0.5678
+Running sense_reversal_barrier (5.3) with 2 threads and 40000 iterations
+ Run 1:
+[3] Sense-reversal Barrier with 2 threads took 0.010 seconds
+ Run 2:
+[3] Sense-reversal Barrier with 2 threads took 0.002 seconds
+ Run 3:
+[3] Sense-reversal Barrier with 2 threads took 0.010 seconds
+ Run 4:
+[3] Sense-reversal Barrier with 2 threads took 0.009 seconds
+
+sense_reversal_barrier (5.3) 2 40000 0.0077
+Running pthread_barrier (5.1) with 4 threads and 1000 iterations
+ Run 1:
+[1] Pthreads_barrier with 4 threads took 0.032 seconds
+ Run 2:
+[1] Pthreads_barrier with 4 threads took 0.031 seconds
+ Run 3:
+[1] Pthreads_barrier with 4 threads took 0.030 seconds
+ Run 4:
+[1] Pthreads_barrier with 4 threads took 0.030 seconds
+
+pthread_barrier (5.1) 4 1000 0.0307
+Running mutex_cond_barrier (5.2) with 4 threads and 1000 iterations
+ Run 1:
+[2] Mutex_Condition_Barrier with 4 threads took 0.050 seconds
+ Run 2:
+[2] Mutex_Condition_Barrier with 4 threads took 0.050 seconds
+ Run 3:
+[2] Mutex_Condition_Barrier with 4 threads took 0.051 seconds
+ Run 4:
+[2] Mutex_Condition_Barrier with 4 threads took 0.048 seconds
+
+mutex_cond_barrier (5.2) 4 1000 0.0497
+Running sense_reversal_barrier (5.3) with 4 threads and 1000 iterations
+ Run 1:
+[3] Sense-reversal Barrier with 4 threads took 0.003 seconds
+ Run 2:
+[3] Sense-reversal Barrier with 4 threads took 0.003 seconds
+ Run 3:
+[3] Sense-reversal Barrier with 4 threads took 0.003 seconds
+ Run 4:
+[3] Sense-reversal Barrier with 4 threads took 0.003 seconds
+
+sense_reversal_barrier (5.3) 4 1000 0.0030
+Running pthread_barrier (5.1) with 4 threads and 10000 iterations
+ Run 1:
+[1] Pthreads_barrier with 4 threads took 0.306 seconds
+ Run 2:
+[1] Pthreads_barrier with 4 threads took 0.310 seconds
+ Run 3:
+[1] Pthreads_barrier with 4 threads took 0.317 seconds
+ Run 4:
+[1] Pthreads_barrier with 4 threads took 0.312 seconds
+
+pthread_barrier (5.1) 4 10000 0.3113
+Running mutex_cond_barrier (5.2) with 4 threads and 10000 iterations
+ Run 1:
+[2] Mutex_Condition_Barrier with 4 threads took 0.454 seconds
+ Run 2:
+[2] Mutex_Condition_Barrier with 4 threads took 0.439 seconds
+ Run 3:
+[2] Mutex_Condition_Barrier with 4 threads took 0.460 seconds
+ Run 4:
+[2] Mutex_Condition_Barrier with 4 threads took 0.460 seconds
+
+mutex_cond_barrier (5.2) 4 10000 0.4533
+Running sense_reversal_barrier (5.3) with 4 threads and 10000 iterations
+ Run 1:
+[3] Sense-reversal Barrier with 4 threads took 0.022 seconds
+ Run 2:
+[3] Sense-reversal Barrier with 4 threads took 0.021 seconds
+ Run 3:
+[3] Sense-reversal Barrier with 4 threads took 0.020 seconds
+ Run 4:
+[3] Sense-reversal Barrier with 4 threads took 0.024 seconds
+
+sense_reversal_barrier (5.3) 4 10000 0.0218
+Running pthread_barrier (5.1) with 4 threads and 40000 iterations
+ Run 1:
+[1] Pthreads_barrier with 4 threads took 1.217 seconds
+ Run 2:
+[1] Pthreads_barrier with 4 threads took 1.227 seconds
+ Run 3:
+[1] Pthreads_barrier with 4 threads took 1.220 seconds
+ Run 4:
+[1] Pthreads_barrier with 4 threads took 1.221 seconds
+
+pthread_barrier (5.1) 4 40000 1.2213
+Running mutex_cond_barrier (5.2) with 4 threads and 40000 iterations
+ Run 1:
+[2] Mutex_Condition_Barrier with 4 threads took 1.791 seconds
+ Run 2:
+[2] Mutex_Condition_Barrier with 4 threads took 1.757 seconds
+ Run 3:
+[2] Mutex_Condition_Barrier with 4 threads took 1.796 seconds
+ Run 4:
+[2] Mutex_Condition_Barrier with 4 threads took 1.800 seconds
+
+mutex_cond_barrier (5.2) 4 40000 1.7860
+Running sense_reversal_barrier (5.3) with 4 threads and 40000 iterations
+ Run 1:
+[3] Sense-reversal Barrier with 4 threads took 0.077 seconds
+ Run 2:
+[3] Sense-reversal Barrier with 4 threads took 0.084 seconds
+ Run 3:
+[3] Sense-reversal Barrier with 4 threads took 0.076 seconds
+ Run 4:
+[3] Sense-reversal Barrier with 4 threads took 0.064 seconds
+
+sense_reversal_barrier (5.3) 4 40000 0.0753
+Running pthread_barrier (5.1) with 8 threads and 1000 iterations
+ Run 1:
+[1] Pthreads_barrier with 8 threads took 0.064 seconds
+ Run 2:
+[1] Pthreads_barrier with 8 threads took 0.063 seconds
+ Run 3:
+[1] Pthreads_barrier with 8 threads took 0.068 seconds
+ Run 4:
+[1] Pthreads_barrier with 8 threads took 0.063 seconds
+
+pthread_barrier (5.1) 8 1000 0.0645
+Running mutex_cond_barrier (5.2) with 8 threads and 1000 iterations
+ Run 1:
+[2] Mutex_Condition_Barrier with 8 threads took 0.113 seconds
+ Run 2:
+[2] Mutex_Condition_Barrier with 8 threads took 0.116 seconds
+ Run 3:
+[2] Mutex_Condition_Barrier with 8 threads took 0.115 seconds
+ Run 4:
+[2] Mutex_Condition_Barrier with 8 threads took 0.111 seconds
+
+mutex_cond_barrier (5.2) 8 1000 0.1138
+Running sense_reversal_barrier (5.3) with 8 threads and 1000 iterations
+ Run 1:
+[3] Sense-reversal Barrier with 8 threads took 0.027 seconds
+ Run 2:
+[3] Sense-reversal Barrier with 8 threads took 0.014 seconds
+ Run 3:
+[3] Sense-reversal Barrier with 8 threads took 0.013 seconds
+ Run 4:
+[3] Sense-reversal Barrier with 8 threads took 0.014 seconds
+
+sense_reversal_barrier (5.3) 8 1000 0.0170
+Running pthread_barrier (5.1) with 8 threads and 10000 iterations
+ Run 1:
+[1] Pthreads_barrier with 8 threads took 0.679 seconds
+ Run 2:
+[1] Pthreads_barrier with 8 threads took 0.681 seconds
+ Run 3:
+[1] Pthreads_barrier with 8 threads took 0.679 seconds
+ Run 4:
+[1] Pthreads_barrier with 8 threads took 0.674 seconds
+
+pthread_barrier (5.1) 8 10000 0.6783
+Running mutex_cond_barrier (5.2) with 8 threads and 10000 iterations
+ Run 1:
+[2] Mutex_Condition_Barrier with 8 threads took 1.172 seconds
+ Run 2:
+[2] Mutex_Condition_Barrier with 8 threads took 1.138 seconds
+ Run 3:
+[2] Mutex_Condition_Barrier with 8 threads took 1.167 seconds
+ Run 4:
+[2] Mutex_Condition_Barrier with 8 threads took 1.586 seconds
+
+mutex_cond_barrier (5.2) 8 10000 1.2658
+Running sense_reversal_barrier (5.3) with 8 threads and 10000 iterations
+ Run 1:
+[3] Sense-reversal Barrier with 8 threads took 0.135 seconds
+ Run 2:
+[3] Sense-reversal Barrier with 8 threads took 0.126 seconds
+ Run 3:
+[3] Sense-reversal Barrier with 8 threads took 0.114 seconds
+ Run 4:
+[3] Sense-reversal Barrier with 8 threads took 0.149 seconds
+
+sense_reversal_barrier (5.3) 8 10000 0.1310
+Running pthread_barrier (5.1) with 8 threads and 40000 iterations
+ Run 1:
+[1] Pthreads_barrier with 8 threads took 2.694 seconds
+ Run 2:
+[1] Pthreads_barrier with 8 threads took 2.719 seconds
+ Run 3:
+[1] Pthreads_barrier with 8 threads took 2.709 seconds
+ Run 4:
+[1] Pthreads_barrier with 8 threads took 2.724 seconds
+
+pthread_barrier (5.1) 8 40000 2.7115
+Running mutex_cond_barrier (5.2) with 8 threads and 40000 iterations
+ Run 1:
+[2] Mutex_Condition_Barrier with 8 threads took 4.788 seconds
+ Run 2:
+[2] Mutex_Condition_Barrier with 8 threads took 4.725 seconds
+ Run 3:
+[2] Mutex_Condition_Barrier with 8 threads took 4.688 seconds
+ Run 4:
+[2] Mutex_Condition_Barrier with 8 threads took 4.718 seconds
+
+mutex_cond_barrier (5.2) 8 40000 4.7297
+Running sense_reversal_barrier (5.3) with 8 threads and 40000 iterations
+ Run 1:
+[3] Sense-reversal Barrier with 8 threads took 0.359 seconds
+ Run 2:
+[3] Sense-reversal Barrier with 8 threads took 0.360 seconds
+ Run 3:
+[3] Sense-reversal Barrier with 8 threads took 0.343 seconds
+ Run 4:
+[3] Sense-reversal Barrier with 8 threads took 0.340 seconds
+
+sense_reversal_barrier (5.3) 8 40000 0.3505
+Running pthread_barrier (5.1) with 16 threads and 1000 iterations
+ Run 1:
+[1] Pthreads_barrier with 16 threads took 0.137 seconds
+ Run 2:
+[1] Pthreads_barrier with 16 threads took 0.133 seconds
+ Run 3:
+[1] Pthreads_barrier with 16 threads took 0.133 seconds
+ Run 4:
+[1] Pthreads_barrier with 16 threads took 0.133 seconds
+
+pthread_barrier (5.1) 16 1000 0.1340
+Running mutex_cond_barrier (5.2) with 16 threads and 1000 iterations
+ Run 1:
+[2] Mutex_Condition_Barrier with 16 threads took 0.245 seconds
+ Run 2:
+[2] Mutex_Condition_Barrier with 16 threads took 0.239 seconds
+ Run 3:
+[2] Mutex_Condition_Barrier with 16 threads took 0.237 seconds
+ Run 4:
+[2] Mutex_Condition_Barrier with 16 threads took 0.237 seconds
+
+mutex_cond_barrier (5.2) 16 1000 0.2395
+Running sense_reversal_barrier (5.3) with 16 threads and 1000 iterations
+ Run 1:
+[3] Sense-reversal Barrier with 16 threads took 4.488 seconds
+ Run 2:
+[3] Sense-reversal Barrier with 16 threads took 4.519 seconds
+ Run 3:
+[3] Sense-reversal Barrier with 16 threads took 4.510 seconds
+ Run 4:
+[3] Sense-reversal Barrier with 16 threads took 4.602 seconds
+
+sense_reversal_barrier (5.3) 16 1000 4.5297
+Running pthread_barrier (5.1) with 16 threads and 10000 iterations
+ Run 1:
+[1] Pthreads_barrier with 16 threads took 1.400 seconds
+ Run 2:
+[1] Pthreads_barrier with 16 threads took 1.391 seconds
+ Run 3:
+[1] Pthreads_barrier with 16 threads took 1.402 seconds
+ Run 4:
+[1] Pthreads_barrier with 16 threads took 1.373 seconds
+
+pthread_barrier (5.1) 16 10000 1.3915
+Running mutex_cond_barrier (5.2) with 16 threads and 10000 iterations
+ Run 1:
+[2] Mutex_Condition_Barrier with 16 threads took 2.457 seconds
+ Run 2:
+[2] Mutex_Condition_Barrier with 16 threads took 2.438 seconds
+ Run 3:
+[2] Mutex_Condition_Barrier with 16 threads took 2.484 seconds
+ Run 4:
+[2] Mutex_Condition_Barrier with 16 threads took 2.481 seconds
+
+mutex_cond_barrier (5.2) 16 10000 2.4650
+Running sense_reversal_barrier (5.3) with 16 threads and 10000 iterations
+ Run 1:
+[3] Sense-reversal Barrier with 16 threads took 44.382 seconds
+ Run 2:
+[3] Sense-reversal Barrier with 16 threads took 44.199 seconds
+ Run 3:
+[3] Sense-reversal Barrier with 16 threads took 44.550 seconds
+ Run 4:
+[3] Sense-reversal Barrier with 16 threads took 44.562 seconds
+
+sense_reversal_barrier (5.3) 16 10000 44.4233
+Running pthread_barrier (5.1) with 16 threads and 40000 iterations
+ Run 1:
+[1] Pthreads_barrier with 16 threads took 5.600 seconds
+ Run 2:
+[1] Pthreads_barrier with 16 threads took 5.592 seconds
+ Run 3:
+[1] Pthreads_barrier with 16 threads took 5.584 seconds
+ Run 4:
+[1] Pthreads_barrier with 16 threads took 5.570 seconds
+
+pthread_barrier (5.1) 16 40000 5.5865
+Running mutex_cond_barrier (5.2) with 16 threads and 40000 iterations
+ Run 1:
+[2] Mutex_Condition_Barrier with 16 threads took 9.998 seconds
+ Run 2:
+[2] Mutex_Condition_Barrier with 16 threads took 9.947 seconds
+ Run 3:
+[2] Mutex_Condition_Barrier with 16 threads took 9.905 seconds
+ Run 4:
+[2] Mutex_Condition_Barrier with 16 threads took 9.949 seconds
+
+mutex_cond_barrier (5.2) 16 40000 9.9497
+Running sense_reversal_barrier (5.3) with 16 threads and 40000 iterations
+ Run 1:
+[3] Sense-reversal Barrier with 16 threads took 181.009 seconds
+ Run 2:
+[3] Sense-reversal Barrier with 16 threads took 178.774 seconds
+ Run 3:
+[3] Sense-reversal Barrier with 16 threads took 181.488 seconds
+ Run 4:
+[3] Sense-reversal Barrier with 16 threads took 180.709 seconds
+
+sense_reversal_barrier (5.3) 16 40000 180.4950
+Running pthread_barrier (5.1) with 32 threads and 1000 iterations
+ Run 1:
+[1] Pthreads_barrier with 32 threads took 0.268 seconds
+ Run 2:
+[1] Pthreads_barrier with 32 threads took 0.275 seconds
+ Run 3:
+[1] Pthreads_barrier with 32 threads took 0.269 seconds
+ Run 4:
+[1] Pthreads_barrier with 32 threads took 0.271 seconds
+
+pthread_barrier (5.1) 32 1000 0.2707
+Running mutex_cond_barrier (5.2) with 32 threads and 1000 iterations
+ Run 1:
+[2] Mutex_Condition_Barrier with 32 threads took 0.483 seconds
+ Run 2:
+[2] Mutex_Condition_Barrier with 32 threads took 0.480 seconds
+ Run 3:
+[2] Mutex_Condition_Barrier with 32 threads took 0.488 seconds
+ Run 4:
+[2] Mutex_Condition_Barrier with 32 threads took 0.488 seconds
+
+mutex_cond_barrier (5.2) 32 1000 0.4848
+Running sense_reversal_barrier (5.3) with 32 threads and 1000 iterations
+ Run 1:
+[3] Sense-reversal Barrier with 32 threads took 12.988 seconds
+ Run 2:
+[3] Sense-reversal Barrier with 32 threads took 13.042 seconds
+ Run 3:
+[3] Sense-reversal Barrier with 32 threads took 12.970 seconds
+ Run 4:
+[3] Sense-reversal Barrier with 32 threads took 12.906 seconds
+
+sense_reversal_barrier (5.3) 32 1000 12.9765
+Running pthread_barrier (5.1) with 32 threads and 10000 iterations
+ Run 1:
+[1] Pthreads_barrier with 32 threads took 2.802 seconds
+ Run 2:
+[1] Pthreads_barrier with 32 threads took 2.811 seconds
+ Run 3:
+[1] Pthreads_barrier with 32 threads took 2.824 seconds
+ Run 4:
+[1] Pthreads_barrier with 32 threads took 2.806 seconds
+
+pthread_barrier (5.1) 32 10000 2.8107
+Running mutex_cond_barrier (5.2) with 32 threads and 10000 iterations
+ Run 1:
+[2] Mutex_Condition_Barrier with 32 threads took 4.834 seconds
+ Run 2:
+[2] Mutex_Condition_Barrier with 32 threads took 4.877 seconds
+ Run 3:
+[2] Mutex_Condition_Barrier with 32 threads took 4.886 seconds
+ Run 4:
+[2] Mutex_Condition_Barrier with 32 threads took 4.813 seconds
+
+mutex_cond_barrier (5.2) 32 10000 4.8525
+Running sense_reversal_barrier (5.3) with 32 threads and 10000 iterations
+ Run 1:
+[3] Sense-reversal Barrier with 32 threads took 130.210 seconds
+ Run 2:
+[3] Sense-reversal Barrier with 32 threads took 129.545 seconds
+ Run 3:
+[3] Sense-reversal Barrier with 32 threads took 129.723 seconds
+ Run 4:
+[3] Sense-reversal Barrier with 32 threads took 129.726 seconds
+
+sense_reversal_barrier (5.3) 32 10000 129.8010
+Running pthread_barrier (5.1) with 32 threads and 40000 iterations
+ Run 1:
+[1] Pthreads_barrier with 32 threads took 11.257 seconds
+ Run 2:
+[1] Pthreads_barrier with 32 threads took 11.179 seconds
+ Run 3:
+[1] Pthreads_barrier with 32 threads took 11.270 seconds
+ Run 4:
+[1] Pthreads_barrier with 32 threads took 11.267 seconds
+
+pthread_barrier (5.1) 32 40000 11.2433
+Running mutex_cond_barrier (5.2) with 32 threads and 40000 iterations
+ Run 1:
+[2] Mutex_Condition_Barrier with 32 threads took 19.319 seconds
+ Run 2:
+[2] Mutex_Condition_Barrier with 32 threads took 19.313 seconds
+ Run 3:
+[2] Mutex_Condition_Barrier with 32 threads took 19.296 seconds
+ Run 4:
+[2] Mutex_Condition_Barrier with 32 threads took 19.299 seconds
+
+mutex_cond_barrier (5.2) 32 40000 19.3068
+Running sense_reversal_barrier (5.3) with 32 threads and 40000 iterations
+ Run 1:
+[3] Sense-reversal Barrier with 32 threads took 517.560 seconds
+ Run 2:
+[3] Sense-reversal Barrier with 32 threads took 519.274 seconds
+ Run 3:
+[3] Sense-reversal Barrier with 32 threads took 517.822 seconds
+ Run 4:
+[3] Sense-reversal Barrier with 32 threads took 520.594 seconds
+
+sense_reversal_barrier (5.3) 32 40000 518.8125
+
+   
