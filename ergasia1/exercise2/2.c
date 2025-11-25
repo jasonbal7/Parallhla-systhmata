@@ -12,8 +12,9 @@ pthread_mutex_t mutex = PTHREAD_MUTEX_INITIALIZER;
 pthread_rwlock_t rwlock = PTHREAD_RWLOCK_INITIALIZER;
 atomic_int value_atomic = 0;
 
-void *worker_with_mutex(void *)
+void *worker_with_mutex(void *arg)
 {
+    (void)arg;
     for (int i = 0; i < iterations; ++i) {
         pthread_mutex_lock(&mutex);
         value += 1;
@@ -22,8 +23,9 @@ void *worker_with_mutex(void *)
     return NULL;
 }
 
-void *worker_with_rwlock(void *)
-{
+void *worker_with_rwlock(void *arg)
+{   
+    (void)arg;
     for (int i = 0; i < iterations; ++i) {
         pthread_rwlock_wrlock(&rwlock);
         value += 1;
@@ -32,8 +34,9 @@ void *worker_with_rwlock(void *)
     return NULL;    
 }
 
-void *worker_with_atomic(void *) 
+void *worker_with_atomic(void *arg) 
 {
+    (void)arg;
     for (int i = 0; i < iterations; ++i) {
         atomic_fetch_add(&value_atomic, 1);
     }
