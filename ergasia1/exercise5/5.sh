@@ -1,5 +1,7 @@
 #!/bin/bash
 
+export LC_NUMERIC=C
+
 SCRIPT_DIR=$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)
 ROOT_DIR=$(cd "$SCRIPT_DIR/.." && pwd)
 RESULTS_DIR="$ROOT_DIR/results"
@@ -10,10 +12,10 @@ PROG1="$ROOT_DIR/build/5.1.out"
 PROG2="$ROOT_DIR/build/5.2.out"
 PROG3="$ROOT_DIR/build/5.3.out"
 
-OUTPUT_FILE="$RESULTS_DIR/5.txt"
+OUTPUT_FILE="$RESULTS_DIR/5runs-4.txt"
 
-THREADS=(2 4 8 16 32);
-ITERATIONS=(1000 10000 40000)
+THREADS=(2 4 8 16);
+ITERATIONS=(1000 5000 10000)
 RUNS=4
 
 echo "--------Barrier Benchmark--------" > "$OUTPUT_FILE"

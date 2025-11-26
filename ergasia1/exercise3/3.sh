@@ -1,6 +1,5 @@
 #!/bin/bash
 
-# Fix for decimal point (force dot instead of comma)
 export LC_NUMERIC=C
 
 SCRIPT_DIR=$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)
