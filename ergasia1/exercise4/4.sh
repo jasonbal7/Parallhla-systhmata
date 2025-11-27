@@ -13,7 +13,7 @@ RUNS=4
 
 SIZES=(1000000 5000000 10000000)
 TPS=(2500 5000 10000)
-PCTS=(30)
+PCTS=(30 50 70)
 LOCKS=("mutex" "rwlock")
 THREADS=(4)
 
@@ -75,8 +75,8 @@ echo "Experiments complete. Results in $OUT"
 
 if command -v python3 >/dev/null 2>&1; then
     if [ -f "$PLOT_SCRIPT" ]; then
-        if python3 "$PLOT_SCRIPT" "$OUT" --output-dir "$SCRIPT_DIR/plots"; then
-            echo "Generated plots in $SCRIPT_DIR/plots."
+        if python3 "$PLOT_SCRIPT" "$OUT" --output-dir "$ROOT_DIR/plots"; then
+            echo "Generated plots in $ROOT_DIR/plots."
         else
             echo "Skipping plot generation (matplotlib missing or error occurred)." >&2
         fi

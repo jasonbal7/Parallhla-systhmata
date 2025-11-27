@@ -17,7 +17,9 @@ except ImportError as exc:  # pragma: no cover
 
 Row = Tuple[int, int, int, int, str, str, float]
 SCRIPT_DIR = pathlib.Path(__file__).resolve().parent
-DEFAULT_TABLE = SCRIPT_DIR.parent / "results" / "4.txt"
+ROOT_DIR = SCRIPT_DIR.parent
+DEFAULT_TABLE = ROOT_DIR / "results" / "4.txt"
+DEFAULT_OUT_DIR = ROOT_DIR / "plots"
 
 
 def parse_table(path: pathlib.Path) -> List[Row]:
@@ -80,7 +82,7 @@ def plot(series: Dict[int, Dict[Tuple[str, str], List[Tuple[int, float]]]], thre
         plt.grid(True, which="both", linestyle="--", alpha=0.4)
         plt.legend()
         plt.tight_layout()
-        output_path = out_dir / f"timings_txns_{txns_per_thread}.png"
+        output_path = out_dir / f"exercise4_txns_{txns_per_thread}.png"
         plt.savefig(output_path)
         plt.close()
         print(f"Wrote {output_path}")
@@ -96,8 +98,8 @@ def main() -> None:
     )
     parser.add_argument(
         "--output-dir",
-        default="plots",
-        help="Directory to store generated PNG files (default: plots)",
+        default=str(DEFAULT_OUT_DIR),
+        help=f"Directory to store generated PNG files (default: {DEFAULT_OUT_DIR})",
     )
     args = parser.parse_args()
 

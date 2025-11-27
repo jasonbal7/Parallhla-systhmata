@@ -148,7 +148,8 @@ int main(int argc, char *argv[])
 
     if (check_results(&array_stats, &serial_stats)) {
         printf("Results match between parallel and serial computations.\n");
-    } else {
+    }
+    else {
         printf("Results do NOT match!\n");
     }
 }

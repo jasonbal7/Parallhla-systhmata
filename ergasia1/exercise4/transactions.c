@@ -3,6 +3,17 @@
 #include <pthread.h>
 #include <stdio.h>
 #include <stdlib.h>
+#include <unistd.h>
+#include <time.h>
+
+//msleep(10); // sleep 10 milliseconds
+void msleep(int ms) 
+{
+    struct timespec ts;
+    ts.tv_sec = ms / 1000;
+    ts.tv_nsec = (ms % 1000) * 1000000;
+    nanosleep(&ts, NULL);
+}
 
 int choose_random_index(int size, unsigned int *seed)
 {
@@ -110,7 +121,7 @@ int money_transfer_transaction_rw_fg(unsigned int *seed)
 int show_balance_transaction(unsigned int *seed)
 {
     int index = choose_random_index(size, seed);
-    //usleep(100);
+    msleep(10);
     return array[index];
 }
 
@@ -122,7 +133,7 @@ int show_balance_transaction_fg(unsigned int *seed)
     int balance = array[index];
     pthread_mutex_unlock(&account_mutex[index]);
 
-    //usleep(100);
+    msleep(10);
     
     return balance;
 }
@@ -135,7 +146,7 @@ int show_balance_transaction_rw_fg(unsigned int *seed)
     int balance = array[index];
     pthread_rwlock_unlock(&account_rwlock[index]);
 
-    //usleep(100);
+    msleep(10);
 
     return balance;
 }

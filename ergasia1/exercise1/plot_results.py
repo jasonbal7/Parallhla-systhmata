@@ -1,0 +1,96 @@
+#!/usr/bin/env python3
+"""Plot polynomial multiplication timings from results/1.txt."""
+from __future__ import annotations
+
+import argparse
+import pathlib
+from collections import defaultdict
+from typing import Dict, List, Tuple
+
+try:
+    import matplotlib.pyplot as plt
+except ImportError as exc:  # pragma: no cover
+    raise SystemExit(
+        "matplotlib is required. Install it with 'python -m pip install matplotlib'."
+    ) from exc
+
+Row = Tuple[int, float, Dict[int, float]]
+SCRIPT_DIR = pathlib.Path(__file__).resolve().parent
+ROOT_DIR = SCRIPT_DIR.parent
+DEFAULT_RESULTS = ROOT_DIR / "results" / "1.txt"
+DEFAULT_OUT_DIR = ROOT_DIR / "plots"
+
+
+def parse_results(path: pathlib.Path) -> List[Row]:
+    rows: List[Row] = []
+    current_degree = None
+    parallel_data: Dict[int, float] = {}
+    sequential = None
+
+    with path.open(encoding="utf-8") as fh:
+        for raw in fh:
+            line = raw.strip()
+            if line.startswith("Testing degree ="):
+                if current_degree is not None and sequential is not None:
+                    rows.append((current_degree, sequential, dict(parallel_data)))
+                current_degree = int(line.split("=")[1])
+                sequential = None
+                parallel_data.clear()
+            elif line.startswith("Sequential multiplication average:"):
+                sequential = float(line.split(":")[1].split()[0])
+            elif line.startswith("Parallel multiplication with"):
+                parts = line.replace(":", "").split()
+                try:
+                    threads = int(parts[3])
+                    value = float(parts[-2])
+                except (IndexError, ValueError) as exc:
+                    raise SystemExit(f"Failed to parse line: '{line}'") from exc
+                parallel_data[threads] = value
+    if current_degree is not None and sequential is not None:
+        rows.append((current_degree, sequential, dict(parallel_data)))
+    if not rows:
+        raise SystemExit(f"No summary data found in {path}")
+    return rows
+
+
+def plot(rows: List[Row], output_dir: pathlib.Path) -> None:
+    output_dir.mkdir(parents=True, exist_ok=True)
+    for degree, seq_time, par_dict in rows:
+        plt.figure(figsize=(8, 5))
+        threads = sorted(par_dict)
+        times = [par_dict[t] for t in threads]
+        plt.plot(threads, times, marker="o", label="Parallel")
+        plt.axhline(seq_time, color="red", linestyle="--", label="Sequential avg")
+        plt.title(f"Polynomial multiplication timings (degree={degree})")
+        plt.xlabel("Threads")
+        plt.ylabel("Time (s)")
+        plt.grid(True, linestyle="--", alpha=0.5)
+        plt.legend()
+        plt.tight_layout()
+        out_file = output_dir / f"exercise1_degree_{degree}.png"
+        plt.savefig(out_file)
+        plt.close()
+        print(f"Wrote {out_file}")
+
+
+def main() -> None:
+    parser = argparse.ArgumentParser(description=__doc__)
+    parser.add_argument(
+        "results",
+        nargs="?",
+        default=str(DEFAULT_RESULTS),
+        help=f"Path to results file (default: {DEFAULT_RESULTS})",
+    )
+    parser.add_argument(
+        "--output-dir",
+        default=str(DEFAULT_OUT_DIR),
+        help=f"Directory for plots (default: {DEFAULT_OUT_DIR})",
+    )
+    args = parser.parse_args()
+
+    rows = parse_results(pathlib.Path(args.results))
+    plot(rows, pathlib.Path(args.output_dir))
+
+
+if __name__ == "__main__":
+    main()

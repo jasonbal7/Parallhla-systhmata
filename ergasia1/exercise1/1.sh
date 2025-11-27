@@ -8,6 +8,7 @@ mkdir -p "$RESULTS_DIR"
 
 PROG="$ROOT_DIR/build/1.out"
 OUTPUT_FILE="$RESULTS_DIR/1.txt"
+PLOT_SCRIPT="$SCRIPT_DIR/plot_results.py"
 
 DEGREES=(10000 100000)
 THREADS=(2 4 6 8 10 12)
@@ -66,3 +67,13 @@ for deg in "${DEGREES[@]}"; do
 
     echo "" >> "$OUTPUT_FILE"
 done
+
+if command -v python3 >/dev/null 2>&1 && [ -f "$PLOT_SCRIPT" ]; then
+    if python3 "$PLOT_SCRIPT" "$OUTPUT_FILE" --output-dir "$SCRIPT_DIR/plots"; then
+        echo "Generated plots in $SCRIPT_DIR/plots" | tee -a "$OUTPUT_FILE"
+    else
+        echo "Warning: plotting failed (missing matplotlib?)." | tee -a "$OUTPUT_FILE"
+    fi
+else
+    echo "Plot script missing or python3 unavailable; skipping plots." | tee -a "$OUTPUT_FILE"
+fi
