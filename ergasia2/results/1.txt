@@ -4,154 +4,24 @@ Testing degree = 10000
 -------------------------------------
 Running: degree1 = 10000, degree2 = 10000, threads = 2 4 6 8 10 12
 
-Run 1:
-Generated polynomials in 0.000 seconds
-Sequential multiplication took 0.292 seconds
-Parallel multiplication with 2 threads took 0.245 seconds
-Match baseline: yes
-Parallel multiplication with 4 threads took 0.174 seconds
-Match baseline: yes
-Parallel multiplication with 6 threads took 0.168 seconds
-Match baseline: yes
-Parallel multiplication with 8 threads took 0.139 seconds
-Match baseline: yes
-Parallel multiplication with 10 threads took 0.126 seconds
-Match baseline: yes
-Parallel multiplication with 12 threads took 0.136 seconds
-Match baseline: yes
-
-Run 2:
-Generated polynomials in 0.000 seconds
-Sequential multiplication took 0.319 seconds
-Parallel multiplication with 2 threads took 0.257 seconds
-Match baseline: yes
-Parallel multiplication with 4 threads took 0.176 seconds
-Match baseline: yes
-Parallel multiplication with 6 threads took 0.164 seconds
-Match baseline: yes
-Parallel multiplication with 8 threads took 0.141 seconds
-Match baseline: yes
-Parallel multiplication with 10 threads took 0.128 seconds
-Match baseline: yes
-Parallel multiplication with 12 threads took 0.127 seconds
-Match baseline: yes
-
-Run 3:
-Generated polynomials in 0.000 seconds
-Sequential multiplication took 0.294 seconds
-Parallel multiplication with 2 threads took 0.254 seconds
-Match baseline: yes
-Parallel multiplication with 4 threads took 0.170 seconds
-Match baseline: yes
-Parallel multiplication with 6 threads took 0.157 seconds
-Match baseline: yes
-Parallel multiplication with 8 threads took 0.138 seconds
-Match baseline: yes
-Parallel multiplication with 10 threads took 0.128 seconds
-Match baseline: yes
-Parallel multiplication with 12 threads took 0.118 seconds
-Match baseline: yes
-
-Run 4:
-Generated polynomials in 0.000 seconds
-Sequential multiplication took 0.293 seconds
-Parallel multiplication with 2 threads took 0.258 seconds
-Match baseline: yes
-Parallel multiplication with 4 threads took 0.170 seconds
-Match baseline: yes
-Parallel multiplication with 6 threads took 0.177 seconds
-Match baseline: yes
-Parallel multiplication with 8 threads took 0.139 seconds
-Match baseline: yes
-Parallel multiplication with 10 threads took 0.124 seconds
-Match baseline: yes
-Parallel multiplication with 12 threads took 0.118 seconds
-Match baseline: yes
-
 ===== AVERAGES =====
-Sequential multiplication average: .2995 seconds
-Parallel multiplication with 2 threads average: .2535 seconds
-Parallel multiplication with 4 threads average: .1725 seconds
-Parallel multiplication with 6 threads average: .1665 seconds
-Parallel multiplication with 8 threads average: .1392 seconds
-Parallel multiplication with 10 threads average: .1265 seconds
-Parallel multiplication with 12 threads average: .1247 seconds
+Sequential multiplication average: .0477 seconds
+Parallel multiplication with 2 threads average: .0395 seconds
+Parallel multiplication with 4 threads average: .0207 seconds
+Parallel multiplication with 6 threads average: .0235 seconds
+Parallel multiplication with 8 threads average: .0180 seconds
+Parallel multiplication with 10 threads average: .0200 seconds
+Parallel multiplication with 12 threads average: .0232 seconds
 
 Testing degree = 100000
 -------------------------------------
 Running: degree1 = 100000, degree2 = 100000, threads = 2 4 6 8 10 12
 
-Run 1:
-Generated polynomials in 0.003 seconds
-Sequential multiplication took 29.672 seconds
-Parallel multiplication with 2 threads took 22.968 seconds
-Match baseline: yes
-Parallel multiplication with 4 threads took 12.437 seconds
-Match baseline: yes
-Parallel multiplication with 6 threads took 10.017 seconds
-Match baseline: yes
-Parallel multiplication with 8 threads took 8.979 seconds
-Match baseline: yes
-Parallel multiplication with 10 threads took 8.517 seconds
-Match baseline: yes
-Parallel multiplication with 12 threads took 7.721 seconds
-Match baseline: yes
-
-Run 2:
-Generated polynomials in 0.003 seconds
-Sequential multiplication took 29.645 seconds
-Parallel multiplication with 2 threads took 22.548 seconds
-Match baseline: yes
-Parallel multiplication with 4 threads took 12.384 seconds
-Match baseline: yes
-Parallel multiplication with 6 threads took 10.307 seconds
-Match baseline: yes
-Parallel multiplication with 8 threads took 9.054 seconds
-Match baseline: yes
-Parallel multiplication with 10 threads took 8.679 seconds
-Match baseline: yes
-Parallel multiplication with 12 threads took 7.715 seconds
-Match baseline: yes
-
-Run 3:
-Generated polynomials in 0.003 seconds
-Sequential multiplication took 29.165 seconds
-Parallel multiplication with 2 threads took 22.551 seconds
-Match baseline: yes
-Parallel multiplication with 4 threads took 12.272 seconds
-Match baseline: yes
-Parallel multiplication with 6 threads took 10.150 seconds
-Match baseline: yes
-Parallel multiplication with 8 threads took 8.922 seconds
-Match baseline: yes
-Parallel multiplication with 10 threads took 8.602 seconds
-Match baseline: yes
-Parallel multiplication with 12 threads took 7.564 seconds
-Match baseline: yes
-
-Run 4:
-Generated polynomials in 0.003 seconds
-Sequential multiplication took 30.278 seconds
-Parallel multiplication with 2 threads took 22.907 seconds
-Match baseline: yes
-Parallel multiplication with 4 threads took 12.619 seconds
-Match baseline: yes
-Parallel multiplication with 6 threads took 10.070 seconds
-Match baseline: yes
-Parallel multiplication with 8 threads took 9.104 seconds
-Match baseline: yes
-Parallel multiplication with 10 threads took 8.415 seconds
-Match baseline: yes
-Parallel multiplication with 12 threads took 7.658 seconds
-Match baseline: yes
-
 ===== AVERAGES =====
-Sequential multiplication average: 29.6900 seconds
-Parallel multiplication with 2 threads average: 22.7435 seconds
-Parallel multiplication with 4 threads average: 12.4280 seconds
-Parallel multiplication with 6 threads average: 10.1360 seconds
-Parallel multiplication with 8 threads average: 9.0147 seconds
-Parallel multiplication with 10 threads average: 8.5532 seconds
-Parallel multiplication with 12 threads average: 7.6645 seconds
-
-Plot script missing or python3 unavailable; skipping plots.
+Sequential multiplication average: 4.4240 seconds
+Parallel multiplication with 2 threads average: 2.9365 seconds
+Parallel multiplication with 4 threads average: 1.7022 seconds
+Parallel multiplication with 6 threads average: 1.2877 seconds
+Parallel multiplication with 8 threads average: 1.1290 seconds
+Parallel multiplication with 10 threads average: 1.0175 seconds
+Parallel multiplication with 12 threads average: .9612 seconds

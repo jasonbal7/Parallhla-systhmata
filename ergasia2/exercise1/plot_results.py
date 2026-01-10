@@ -8,7 +8,7 @@ from typing import Dict, List, Tuple
 
 try:
     import matplotlib.pyplot as plt
-except ImportError as exc:  # pragma: no cover
+except ImportError as exc:  #pragma: no cover
     raise SystemExit(
         "matplotlib is required. Install it with 'python -m pip install matplotlib'."
     ) from exc
@@ -72,6 +72,45 @@ def plot(rows: List[Row], output_dir: pathlib.Path) -> None:
         print(f"Wrote {out_file}")
 
 
+def plot_summary_table(rows: List[Row], output_dir: pathlib.Path) -> None:
+    output_dir.mkdir(parents=True, exist_ok=True)
+
+    all_threads = sorted({t for (_, _, par_dict) in rows for t in par_dict.keys()})
+    col_labels = [str(t) for t in all_threads] + ["Sequential"]
+
+    cell_text: List[List[str]] = []
+    row_labels: List[str] = []
+    for degree, seq_time, par_dict in rows:
+        row_labels.append(f"POLY. DEGREE: {degree}")
+        row = [f"{par_dict.get(t, float('nan')):.4f}" for t in all_threads]
+        row.append(f"{seq_time:.4f}")
+        cell_text.append(row)
+
+    # Wider figure when many thread columns exist.
+    fig_w = max(8.0, 1.2 * len(col_labels))
+    fig_h = 2.5 + 0.5 * len(row_labels)
+    fig, ax = plt.subplots(figsize=(fig_w, fig_h))
+    ax.axis("off")
+
+    table = ax.table(
+        cellText=cell_text,
+        rowLabels=row_labels,
+        colLabels=col_labels,
+        cellLoc="center",
+        loc="center",
+    )
+    table.auto_set_font_size(False)
+    table.set_fontsize(10)
+    table.scale(1, 1.6)
+
+    ax.set_title("Parallel multiplication (OpenMP) — averages (s)", pad=12)
+    out_file = output_dir / "exercise1_summary_table.png"
+    fig.tight_layout()
+    fig.savefig(out_file, dpi=200)
+    plt.close(fig)
+    print(f"Wrote {out_file}")
+
+
 def main() -> None:
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument(
@@ -85,10 +124,26 @@ def main() -> None:
         default=str(DEFAULT_OUT_DIR),
         help=f"Directory for plots (default: {DEFAULT_OUT_DIR})",
     )
+    parser.add_argument(
+        "--table",
+        action="store_true",
+        help="Also generate a summary table PNG (exercise1_summary_table.png).",
+    )
+    parser.add_argument(
+        "--table-only",
+        action="store_true",
+        help="Generate only the summary table PNG (no per-degree line plots).",
+    )
     args = parser.parse_args()
 
     rows = parse_results(pathlib.Path(args.results))
-    plot(rows, pathlib.Path(args.output_dir))
+    out_dir = pathlib.Path(args.output_dir)
+    if args.table_only:
+        plot_summary_table(rows, out_dir)
+        return
+    plot(rows, out_dir)
+    if args.table:
+        plot_summary_table(rows, out_dir)
 
 
 if __name__ == "__main__":

@@ -250,7 +250,7 @@ int main(int argc, char *argv[])
         return 1;
     }
     int m = atoi(argv[1]);
-    int sparsity = atof(argv[2]);
+    double sparsity = atof(argv[2]);
     int iterations = atoi(argv[3]);
     int threads = atoi(argv[4]);
 
