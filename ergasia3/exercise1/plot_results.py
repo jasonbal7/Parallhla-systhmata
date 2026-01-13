@@ -1,5 +1,6 @@
 #!/usr/bin/env python3
-"""Plot polynomial multiplication timings from ergasia2/exercise1 results."""
+"""Plot polynomial multiplication timings from ergasia3/exercise1 MPI results."""
+
 from __future__ import annotations
 
 import argparse
@@ -8,12 +9,12 @@ from typing import Dict, List, Tuple
 
 try:
     import matplotlib.pyplot as plt
-except ImportError as exc:  #pragma: no cover
+except ImportError as exc:  # pragma: no cover
     raise SystemExit(
-        "matplotlib is required. Install it with 'python -m pip install matplotlib'."
+        "matplotlib is required. Install it with 'python3 -m pip install matplotlib'."
     ) from exc
 
-Row = Tuple[int, float, Dict[int, float]]
+Row = Tuple[int, float, Dict[int, float], Dict[int, Dict[str, float]]]
 SCRIPT_DIR = pathlib.Path(__file__).resolve().parent
 ROOT_DIR = SCRIPT_DIR.parent
 DEFAULT_RESULTS = ROOT_DIR / "results" / "1.txt"
@@ -22,31 +23,63 @@ DEFAULT_OUT_DIR = ROOT_DIR / "plots"
 
 def parse_results(path: pathlib.Path) -> List[Row]:
     rows: List[Row] = []
-    current_degree = None
-    parallel_data: Dict[int, float] = {}
-    sequential = None
+
+    current_degree: int | None = None
+    sequential: float | None = None
+    parallel_total: Dict[int, float] = {}
+    parallel_parts: Dict[int, Dict[str, float]] = {}
+
+    current_proc: int | None = None
+
+    def flush() -> None:
+        nonlocal current_degree, sequential, parallel_total, parallel_parts
+        if current_degree is not None and sequential is not None:
+            rows.append((current_degree, sequential, dict(parallel_total), dict(parallel_parts)))
 
     with path.open(encoding="utf-8") as fh:
         for raw in fh:
-            line = raw.strip()
-            if line.startswith("Testing degree ="):
-                if current_degree is not None and sequential is not None:
-                    rows.append((current_degree, sequential, dict(parallel_data)))
-                current_degree = int(line.split("=")[1])
+            line = raw.rstrip("\n")
+            s = line.strip()
+
+            if s.startswith("Testing degree ="):
+                flush()
+                current_degree = int(s.split("=")[1].strip())
                 sequential = None
-                parallel_data.clear()
-            elif line.startswith("Sequential multiplication average:"):
-                sequential = float(line.split(":")[1].split()[0])
-            elif line.startswith("Parallel multiplication with"):
-                parts = line.replace(":", "").split()
+                parallel_total.clear()
+                parallel_parts.clear()
+                current_proc = None
+                continue
+
+            if s.startswith("Sequential multiplication average:"):
+                sequential = float(s.split(":", 1)[1].split()[0])
+                continue
+
+            if s.startswith("Parallel multiplication with") and "processes average" in s:
+                # Example: Parallel multiplication with 4 processes average: 0.123456 seconds
+                parts = s.replace(":", "").split()
                 try:
-                    threads = int(parts[3])
+                    proc = int(parts[3])
                     value = float(parts[-2])
                 except (IndexError, ValueError) as exc:
-                    raise SystemExit(f"Failed to parse line: '{line}'") from exc
-                parallel_data[threads] = value
-    if current_degree is not None and sequential is not None:
-        rows.append((current_degree, sequential, dict(parallel_data)))
+                    raise SystemExit(f"Failed to parse line: '{s}'") from exc
+                parallel_total[proc] = value
+                parallel_parts.setdefault(proc, {})
+                current_proc = proc
+                continue
+
+            # Optional component timing lines (indented)
+            if current_proc is not None and s.startswith("Send average:"):
+                parallel_parts[current_proc]["send"] = float(s.split(":", 1)[1].split()[0])
+                continue
+            if current_proc is not None and s.startswith("Compute average:"):
+                parallel_parts[current_proc]["compute"] = float(s.split(":", 1)[1].split()[0])
+                continue
+            if current_proc is not None and s.startswith("Receive average:"):
+                parallel_parts[current_proc]["receive"] = float(s.split(":", 1)[1].split()[0])
+                continue
+
+    flush()
+
     if not rows:
         raise SystemExit(f"No summary data found in {path}")
     return rows
@@ -54,18 +87,22 @@ def parse_results(path: pathlib.Path) -> List[Row]:
 
 def plot(rows: List[Row], output_dir: pathlib.Path) -> None:
     output_dir.mkdir(parents=True, exist_ok=True)
-    for degree, seq_time, par_dict in rows:
+
+    for degree, seq_time, par_totals, _parts in rows:
         plt.figure(figsize=(8, 5))
-        threads = sorted(par_dict)
-        times = [par_dict[t] for t in threads]
-        plt.plot(threads, times, marker="o", label="Parallel")
+        procs = sorted(par_totals)
+        times = [par_totals[p] for p in procs]
+
+        plt.plot(procs, times, marker="o", label="Parallel (MPI)")
         plt.axhline(seq_time, color="red", linestyle="--", label="Sequential avg")
-        plt.title(f"Polynomial multiplication timings (degree={degree})")
-        plt.xlabel("Threads")
+
+        plt.title(f"Polynomial multiplication timings (MPI, degree={degree})")
+        plt.xlabel("MPI processes")
         plt.ylabel("Time (s)")
         plt.grid(True, linestyle="--", alpha=0.5)
         plt.legend()
         plt.tight_layout()
+
         out_file = output_dir / f"exercise1_degree_{degree}.png"
         plt.savefig(out_file)
         plt.close()
@@ -75,18 +112,17 @@ def plot(rows: List[Row], output_dir: pathlib.Path) -> None:
 def plot_summary_table(rows: List[Row], output_dir: pathlib.Path) -> None:
     output_dir.mkdir(parents=True, exist_ok=True)
 
-    all_threads = sorted({t for (_, _, par_dict) in rows for t in par_dict.keys()})
-    col_labels = [str(t) for t in all_threads] + ["Sequential"]
+    all_procs = sorted({p for (_deg, _seq, par_totals, _parts) in rows for p in par_totals.keys()})
+    col_labels = [str(p) for p in all_procs] + ["Sequential"]
 
     cell_text: List[List[str]] = []
     row_labels: List[str] = []
-    for degree, seq_time, par_dict in rows:
+    for degree, seq_time, par_totals, _parts in rows:
         row_labels.append(f"POLY. DEGREE: {degree}")
-        row = [f"{par_dict.get(t, float('nan')):.4f}" for t in all_threads]
-        row.append(f"{seq_time:.4f}")
+        row = [f"{par_totals.get(p, float('nan')):.6f}" for p in all_procs]
+        row.append(f"{seq_time:.6f}")
         cell_text.append(row)
 
-    # Wider figure when many thread columns exist.
     fig_w = max(8.0, 1.2 * len(col_labels))
     fig_h = 2.5 + 0.5 * len(row_labels)
     fig, ax = plt.subplots(figsize=(fig_w, fig_h))
@@ -103,7 +139,7 @@ def plot_summary_table(rows: List[Row], output_dir: pathlib.Path) -> None:
     table.set_fontsize(10)
     table.scale(1, 1.6)
 
-    ax.set_title("Parallel multiplication (OpenMP) — averages (s)", pad=12)
+    ax.set_title("Parallel multiplication (MPI) — averages (s)", pad=12)
     out_file = output_dir / "exercise1_summary_table.png"
     fig.tight_layout()
     fig.savefig(out_file, dpi=200)
@@ -138,9 +174,11 @@ def main() -> None:
 
     rows = parse_results(pathlib.Path(args.results))
     out_dir = pathlib.Path(args.output_dir)
+
     if args.table_only:
         plot_summary_table(rows, out_dir)
         return
+
     plot(rows, out_dir)
     if args.table:
         plot_summary_table(rows, out_dir)
