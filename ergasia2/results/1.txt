@@ -5,25 +5,24 @@ Testing degree = 10000
 Running: degree1 = 10000, degree2 = 10000, threads = 2 4 6 8 10 12
 
 ===== AVERAGES =====
-Sequential multiplication average: .0585 seconds
-Parallel multiplication with 2 threads average: .0305 seconds
-Parallel multiplication with 4 threads average: .0160 seconds
-Parallel multiplication with 6 threads average: .0227 seconds
-Parallel multiplication with 8 threads average: .0170 seconds
-Parallel multiplication with 10 threads average: .0190 seconds
-Parallel multiplication with 12 threads average: .0160 seconds
+Sequential multiplication average: .0457 seconds
+Parallel multiplication with 2 threads average: .0250 seconds
+Parallel multiplication with 4 threads average: .0150 seconds
+Parallel multiplication with 6 threads average: .0142 seconds
+Parallel multiplication with 8 threads average: .0110 seconds
+Parallel multiplication with 10 threads average: .0095 seconds
+Parallel multiplication with 12 threads average: .0125 seconds
 
 Testing degree = 100000
 -------------------------------------
 Running: degree1 = 100000, degree2 = 100000, threads = 2 4 6 8 10 12
 
 ===== AVERAGES =====
-Sequential multiplication average: 5.7725 seconds
-Parallel multiplication with 2 threads average: 3.0432 seconds
-Parallel multiplication with 4 threads average: 1.5990 seconds
-Parallel multiplication with 6 threads average: 1.7350 seconds
-Parallel multiplication with 8 threads average: 1.6057 seconds
-Parallel multiplication with 10 threads average: 1.6292 seconds
-Parallel multiplication with 12 threads average: 1.6065 seconds
+Sequential multiplication average: 4.5067 seconds
+Parallel multiplication with 2 threads average: 2.3697 seconds
+Parallel multiplication with 4 threads average: 1.3830 seconds
+Parallel multiplication with 6 threads average: 1.0455 seconds
+Parallel multiplication with 8 threads average: .8822 seconds
+Parallel multiplication with 10 threads average: .7887 seconds
+Parallel multiplication with 12 threads average: .7895 seconds
 
-Warning: plotting failed (missing matplotlib?).

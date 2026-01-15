@@ -6,32 +6,359 @@ Testing m = 5000 sparsity = 0.20 iterations = 10
 -------------------------------------
 Threads = 4
 ===== AVERAGES =====
-Serial CSR conversion average: .151869 seconds
-Parallel CSR conversion average: .053060 seconds
-CSR serial multiplication average: .133686 seconds
-CSR parallel multiplication average: .059629 seconds
-Dense serial multiplication average: .164687 seconds
-Dense parallel multiplication average: .044795 seconds
+Serial CSR conversion average: .221960 seconds
+Parallel CSR conversion average: .074618 seconds
+CSR serial multiplication average: .128751 seconds
+CSR parallel multiplication average: .061159 seconds
+Dense serial multiplication average: .160932 seconds
+Dense parallel multiplication average: .059962 seconds
 
 Threads = 8
 ===== AVERAGES =====
-Serial CSR conversion average: .149207 seconds
-Parallel CSR conversion average: .055582 seconds
-CSR serial multiplication average: .133696 seconds
-CSR parallel multiplication average: .063851 seconds
-Dense serial multiplication average: .166412 seconds
-Dense parallel multiplication average: .054713 seconds
+Serial CSR conversion average: .231383 seconds
+Parallel CSR conversion average: .049263 seconds
+CSR serial multiplication average: .131073 seconds
+CSR parallel multiplication average: .056944 seconds
+Dense serial multiplication average: .160850 seconds
+Dense parallel multiplication average: .045006 seconds
 
 Threads = 12
 ===== AVERAGES =====
-Serial CSR conversion average: .148458 seconds
-Parallel CSR conversion average: .053894 seconds
-CSR serial multiplication average: .132191 seconds
-CSR parallel multiplication average: .064767 seconds
-Dense serial multiplication average: .164436 seconds
-Dense parallel multiplication average: .052047 seconds
+Serial CSR conversion average: .206971 seconds
+Parallel CSR conversion average: .041473 seconds
+CSR serial multiplication average: .119958 seconds
+CSR parallel multiplication average: .064115 seconds
+Dense serial multiplication average: .150128 seconds
+Dense parallel multiplication average: .049565 seconds
 
 
 Testing m = 5000 sparsity = 0.20 iterations = 20
 -------------------------------------
 Threads = 4
+===== AVERAGES =====
+Serial CSR conversion average: .196178 seconds
+Parallel CSR conversion average: .066182 seconds
+CSR serial multiplication average: .247204 seconds
+CSR parallel multiplication average: .097715 seconds
+Dense serial multiplication average: .294047 seconds
+Dense parallel multiplication average: .109586 seconds
+
+Threads = 8
+===== AVERAGES =====
+Serial CSR conversion average: .194225 seconds
+Parallel CSR conversion average: .043302 seconds
+CSR serial multiplication average: .243543 seconds
+CSR parallel multiplication average: .109774 seconds
+Dense serial multiplication average: .298336 seconds
+Dense parallel multiplication average: .081736 seconds
+
+Threads = 12
+===== AVERAGES =====
+Serial CSR conversion average: .187138 seconds
+Parallel CSR conversion average: .037806 seconds
+CSR serial multiplication average: .241298 seconds
+CSR parallel multiplication average: .110438 seconds
+Dense serial multiplication average: .304456 seconds
+Dense parallel multiplication average: .084080 seconds
+
+
+Testing m = 5000 sparsity = 0.50 iterations = 10
+-------------------------------------
+Threads = 4
+===== AVERAGES =====
+Serial CSR conversion average: .179341 seconds
+Parallel CSR conversion average: .086260 seconds
+CSR serial multiplication average: .076459 seconds
+CSR parallel multiplication average: .031575 seconds
+Dense serial multiplication average: .148711 seconds
+Dense parallel multiplication average: .054415 seconds
+
+Threads = 8
+===== AVERAGES =====
+Serial CSR conversion average: .178421 seconds
+Parallel CSR conversion average: .041796 seconds
+CSR serial multiplication average: .078738 seconds
+CSR parallel multiplication average: .034394 seconds
+Dense serial multiplication average: .149000 seconds
+Dense parallel multiplication average: .040549 seconds
+
+Threads = 12
+===== AVERAGES =====
+Serial CSR conversion average: .180761 seconds
+Parallel CSR conversion average: .047281 seconds
+CSR serial multiplication average: .075900 seconds
+CSR parallel multiplication average: .036806 seconds
+Dense serial multiplication average: .149146 seconds
+Dense parallel multiplication average: .047015 seconds
+
+
+Testing m = 5000 sparsity = 0.50 iterations = 20
+-------------------------------------
+Threads = 4
+===== AVERAGES =====
+Serial CSR conversion average: .173166 seconds
+Parallel CSR conversion average: .073360 seconds
+CSR serial multiplication average: .141183 seconds
+CSR parallel multiplication average: .060647 seconds
+Dense serial multiplication average: .290186 seconds
+Dense parallel multiplication average: .095317 seconds
+
+Threads = 8
+===== AVERAGES =====
+Serial CSR conversion average: .181788 seconds
+Parallel CSR conversion average: .046413 seconds
+CSR serial multiplication average: .143554 seconds
+CSR parallel multiplication average: .066003 seconds
+Dense serial multiplication average: .291587 seconds
+Dense parallel multiplication average: .078281 seconds
+
+Threads = 12
+===== AVERAGES =====
+Serial CSR conversion average: .174534 seconds
+Parallel CSR conversion average: .044289 seconds
+CSR serial multiplication average: .144392 seconds
+CSR parallel multiplication average: .066646 seconds
+Dense serial multiplication average: .293161 seconds
+Dense parallel multiplication average: .082514 seconds
+
+
+Testing m = 5000 sparsity = 0.80 iterations = 10
+-------------------------------------
+Threads = 4
+===== AVERAGES =====
+Serial CSR conversion average: .091861 seconds
+Parallel CSR conversion average: .039592 seconds
+CSR serial multiplication average: .027669 seconds
+CSR parallel multiplication average: .009048 seconds
+Dense serial multiplication average: .147189 seconds
+Dense parallel multiplication average: .048547 seconds
+
+Threads = 8
+===== AVERAGES =====
+Serial CSR conversion average: .095518 seconds
+Parallel CSR conversion average: .023624 seconds
+CSR serial multiplication average: .032847 seconds
+CSR parallel multiplication average: .013492 seconds
+Dense serial multiplication average: .168789 seconds
+Dense parallel multiplication average: .052916 seconds
+
+Threads = 12
+===== AVERAGES =====
+Serial CSR conversion average: .096663 seconds
+Parallel CSR conversion average: .021295 seconds
+CSR serial multiplication average: .030745 seconds
+CSR parallel multiplication average: .012735 seconds
+Dense serial multiplication average: .153749 seconds
+Dense parallel multiplication average: .047063 seconds
+
+
+Testing m = 5000 sparsity = 0.80 iterations = 20
+-------------------------------------
+Threads = 4
+===== AVERAGES =====
+Serial CSR conversion average: .095761 seconds
+Parallel CSR conversion average: .037383 seconds
+CSR serial multiplication average: .059396 seconds
+CSR parallel multiplication average: .023537 seconds
+Dense serial multiplication average: .307699 seconds
+Dense parallel multiplication average: .108455 seconds
+
+Threads = 8
+===== AVERAGES =====
+Serial CSR conversion average: .092086 seconds
+Parallel CSR conversion average: .021944 seconds
+CSR serial multiplication average: .058581 seconds
+CSR parallel multiplication average: .019318 seconds
+Dense serial multiplication average: .292080 seconds
+Dense parallel multiplication average: .079424 seconds
+
+Threads = 12
+===== AVERAGES =====
+Serial CSR conversion average: .096394 seconds
+Parallel CSR conversion average: .026164 seconds
+CSR serial multiplication average: .067731 seconds
+CSR parallel multiplication average: .032127 seconds
+Dense serial multiplication average: .291599 seconds
+Dense parallel multiplication average: .103558 seconds
+
+
+Testing m = 10000 sparsity = 0.20 iterations = 10
+-------------------------------------
+Threads = 4
+===== AVERAGES =====
+Serial CSR conversion average: .762387 seconds
+Parallel CSR conversion average: .311236 seconds
+CSR serial multiplication average: .500754 seconds
+CSR parallel multiplication average: .204139 seconds
+Dense serial multiplication average: .588807 seconds
+Dense parallel multiplication average: .230013 seconds
+
+Threads = 8
+===== AVERAGES =====
+Serial CSR conversion average: .701069 seconds
+Parallel CSR conversion average: .202619 seconds
+CSR serial multiplication average: .529523 seconds
+CSR parallel multiplication average: .221463 seconds
+Dense serial multiplication average: .598279 seconds
+Dense parallel multiplication average: .168217 seconds
+
+Threads = 12
+===== AVERAGES =====
+Serial CSR conversion average: .721232 seconds
+Parallel CSR conversion average: .222121 seconds
+CSR serial multiplication average: .516702 seconds
+CSR parallel multiplication average: .218306 seconds
+Dense serial multiplication average: .590530 seconds
+Dense parallel multiplication average: .161354 seconds
+
+
+Testing m = 10000 sparsity = 0.20 iterations = 20
+-------------------------------------
+Threads = 4
+===== AVERAGES =====
+Serial CSR conversion average: .748213 seconds
+Parallel CSR conversion average: .332360 seconds
+CSR serial multiplication average: 1.037617 seconds
+CSR parallel multiplication average: .442037 seconds
+Dense serial multiplication average: 1.189601 seconds
+Dense parallel multiplication average: .433958 seconds
+
+Threads = 8
+===== AVERAGES =====
+Serial CSR conversion average: .724786 seconds
+Parallel CSR conversion average: .200451 seconds
+CSR serial multiplication average: 1.019507 seconds
+CSR parallel multiplication average: .427886 seconds
+Dense serial multiplication average: 1.154344 seconds
+Dense parallel multiplication average: .319592 seconds
+
+Threads = 12
+===== AVERAGES =====
+Serial CSR conversion average: .792735 seconds
+Parallel CSR conversion average: .242249 seconds
+CSR serial multiplication average: 1.040111 seconds
+CSR parallel multiplication average: .434481 seconds
+Dense serial multiplication average: 1.247049 seconds
+Dense parallel multiplication average: .346309 seconds
+
+
+Testing m = 10000 sparsity = 0.50 iterations = 10
+-------------------------------------
+Threads = 4
+===== AVERAGES =====
+Serial CSR conversion average: .897042 seconds
+Parallel CSR conversion average: .353534 seconds
+CSR serial multiplication average: .309605 seconds
+CSR parallel multiplication average: .138161 seconds
+Dense serial multiplication average: .609324 seconds
+Dense parallel multiplication average: .202274 seconds
+
+Threads = 8
+===== AVERAGES =====
+Serial CSR conversion average: .868028 seconds
+Parallel CSR conversion average: .205332 seconds
+CSR serial multiplication average: .306854 seconds
+CSR parallel multiplication average: .139200 seconds
+Dense serial multiplication average: .613400 seconds
+Dense parallel multiplication average: .160216 seconds
+
+Threads = 12
+===== AVERAGES =====
+Serial CSR conversion average: .880408 seconds
+Parallel CSR conversion average: .218091 seconds
+CSR serial multiplication average: .294213 seconds
+CSR parallel multiplication average: .140183 seconds
+Dense serial multiplication average: .642135 seconds
+Dense parallel multiplication average: .171791 seconds
+
+
+Testing m = 10000 sparsity = 0.50 iterations = 20
+-------------------------------------
+Threads = 4
+===== AVERAGES =====
+Serial CSR conversion average: .915173 seconds
+Parallel CSR conversion average: .370820 seconds
+CSR serial multiplication average: .621466 seconds
+CSR parallel multiplication average: .273942 seconds
+Dense serial multiplication average: 1.206737 seconds
+Dense parallel multiplication average: .483515 seconds
+
+Threads = 8
+===== AVERAGES =====
+Serial CSR conversion average: .856873 seconds
+Parallel CSR conversion average: .199675 seconds
+CSR serial multiplication average: .632899 seconds
+CSR parallel multiplication average: .291204 seconds
+Dense serial multiplication average: 1.216753 seconds
+Dense parallel multiplication average: .311656 seconds
+
+Threads = 12
+===== AVERAGES =====
+Serial CSR conversion average: .856381 seconds
+Parallel CSR conversion average: .201614 seconds
+CSR serial multiplication average: .606394 seconds
+CSR parallel multiplication average: .281979 seconds
+Dense serial multiplication average: 1.186548 seconds
+Dense parallel multiplication average: .307002 seconds
+
+
+Testing m = 10000 sparsity = 0.80 iterations = 10
+-------------------------------------
+Threads = 4
+===== AVERAGES =====
+Serial CSR conversion average: .384001 seconds
+Parallel CSR conversion average: .167076 seconds
+CSR serial multiplication average: .111416 seconds
+CSR parallel multiplication average: .052287 seconds
+Dense serial multiplication average: .600821 seconds
+Dense parallel multiplication average: .234859 seconds
+
+Threads = 8
+===== AVERAGES =====
+Serial CSR conversion average: .376687 seconds
+Parallel CSR conversion average: .095736 seconds
+CSR serial multiplication average: .110155 seconds
+CSR parallel multiplication average: .056121 seconds
+Dense serial multiplication average: .581558 seconds
+Dense parallel multiplication average: .155429 seconds
+
+Threads = 12
+===== AVERAGES =====
+Serial CSR conversion average: .366564 seconds
+Parallel CSR conversion average: .082580 seconds
+CSR serial multiplication average: .114781 seconds
+CSR parallel multiplication average: .054075 seconds
+Dense serial multiplication average: .581209 seconds
+Dense parallel multiplication average: .161334 seconds
+
+
+Testing m = 10000 sparsity = 0.80 iterations = 20
+-------------------------------------
+Threads = 4
+===== AVERAGES =====
+Serial CSR conversion average: .386798 seconds
+Parallel CSR conversion average: .158607 seconds
+CSR serial multiplication average: .223630 seconds
+CSR parallel multiplication average: .105084 seconds
+Dense serial multiplication average: 1.159720 seconds
+Dense parallel multiplication average: .444383 seconds
+
+Threads = 8
+===== AVERAGES =====
+Serial CSR conversion average: .367608 seconds
+Parallel CSR conversion average: .100456 seconds
+CSR serial multiplication average: .228669 seconds
+CSR parallel multiplication average: .109996 seconds
+Dense serial multiplication average: 1.169402 seconds
+Dense parallel multiplication average: .303292 seconds
+
+Threads = 12
+===== AVERAGES =====
+Serial CSR conversion average: .381904 seconds
+Parallel CSR conversion average: .093771 seconds
+CSR serial multiplication average: .244941 seconds
+CSR parallel multiplication average: .114859 seconds
+Dense serial multiplication average: 1.196681 seconds
+Dense parallel multiplication average: .341949 seconds
+
+
