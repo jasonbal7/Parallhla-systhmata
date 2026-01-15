@@ -12,9 +12,9 @@ PROG="$SCRIPT_DIR/1"
 OUTPUT_FILE="$RESULTS_DIR/1.txt"
 PLOT_SCRIPT="$SCRIPT_DIR/plot_results.py"
 
-# Defaults (override via env vars like in ergasia2):
+#Defaults like previous ergasies
 DEGREES=(10000 100000)
-PROCS=(2 4)
+PROCS=(2 4 10 16)
 REPEATS=4
 
 if [ -n "${DEGREES_OVERRIDE:-}" ]; then
