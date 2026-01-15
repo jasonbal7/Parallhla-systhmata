@@ -117,16 +117,16 @@ int main(int argc, char* argv[]) {
     double sparsity = atof(argv[2]);
     int iterations = atoi(argv[3]);
 
-    double time_construct = 0;
-    double time_comm_s, time_comm_e;
+    double time_construct = 0.0;
+    double time_comm_s = 0.0, time_comm_e = 0.0;
     double time_calculation_s, time_calculation_e;
 
-    double time_dense_comm_s, time_dense_comm_e;
+    double time_dense_comm_s = 0.0, time_dense_comm_e = 0.0;
     double time_dense_calc_s, time_dense_calc_e;
 
     int* global_matrix = NULL;
     int* global_vector = NULL;
-    CSRMatrix global_csr;
+    CSRMatrix global_csr = {0};
 
 
     if(rank == 0) {   // Create and initialize matrix and vectors.
