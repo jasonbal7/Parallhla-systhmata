@@ -1,0 +1,130 @@
+--------Array Statistics Benchmark--------
+
+Testing size = 10000
+-------------------------------------
+
+Run 1:
+Arrays creation time: 0.001772 seconds
+Parallel computation time: 0.002138 seconds
+Array 0 non-zero count: 8998
+Array 1 non-zero count: 9025
+Array 2 non-zero count: 9006
+Array 3 non-zero count: 8935
+Serial computation time: 0.000072 seconds
+Results match between parallel and serial computations.
+
+Run 2:
+Arrays creation time: 0.001645 seconds
+Parallel computation time: 0.000322 seconds
+Array 0 non-zero count: 8998
+Array 1 non-zero count: 9025
+Array 2 non-zero count: 9006
+Array 3 non-zero count: 8935
+Serial computation time: 0.000065 seconds
+Results match between parallel and serial computations.
+
+Run 3:
+Arrays creation time: 0.001603 seconds
+Parallel computation time: 0.000437 seconds
+Array 0 non-zero count: 8998
+Array 1 non-zero count: 9025
+Array 2 non-zero count: 9006
+Array 3 non-zero count: 8935
+Serial computation time: 0.000064 seconds
+Results match between parallel and serial computations.
+
+Run 4:
+Arrays creation time: 0.001572 seconds
+Parallel computation time: 0.000350 seconds
+Array 0 non-zero count: 8983
+Array 1 non-zero count: 9016
+Array 2 non-zero count: 9030
+Array 3 non-zero count: 9051
+Serial computation time: 0.000064 seconds
+Results match between parallel and serial computations.
+
+===== AVERAGES =====
+Initialization average time:  .001648 seconds
+Serial average time:         .000066 seconds
+Parallel average time:       .000811 seconds
+
+Testing size = 50000
+-------------------------------------
+
+Run 1:
+Arrays creation time: 0.007457 seconds
+Parallel computation time: 0.000577 seconds
+Array 0 non-zero count: 45036
+Array 1 non-zero count: 45026
+Array 2 non-zero count: 45006
+Array 3 non-zero count: 44906
+Serial computation time: 0.000322 seconds
+Results match between parallel and serial computations.
+
+Run 2:
+Arrays creation time: 0.007452 seconds
+Parallel computation time: 0.000702 seconds
+Array 0 non-zero count: 45036
+Array 1 non-zero count: 45026
+Array 2 non-zero count: 45006
+Array 3 non-zero count: 44906
+Serial computation time: 0.000325 seconds
+Results match between parallel and serial computations.
+
+Run 3:
+Arrays creation time: 0.007429 seconds
+Parallel computation time: 0.000449 seconds
+Array 0 non-zero count: 45036
+Array 1 non-zero count: 45026
+Array 2 non-zero count: 45006
+Array 3 non-zero count: 44906
+Serial computation time: 0.000338 seconds
+Results match between parallel and serial computations.
+
+Run 4:
+Arrays creation time: 0.007446 seconds
+Parallel computation time: 0.000454 seconds
+Array 0 non-zero count: 45036
+Array 1 non-zero count: 45026
+Array 2 non-zero count: 45006
+Array 3 non-zero count: 44906
+Serial computation time: 0.000324 seconds
+Results match between parallel and serial computations.
+
+===== AVERAGES =====
+Initialization average time:  .007446 seconds
+Serial average time:         .000327 seconds
+Parallel average time:       .000545 seconds
+
+Testing size = 100000
+-------------------------------------
+
+Run 1:
+Arrays creation time: 0.014684 seconds
+Parallel computation time: 0.000624 seconds
+Array 0 non-zero count: 90062
+Array 1 non-zero count: 89912
+Array 2 non-zero count: 90032
+Array 3 non-zero count: 90045
+Serial computation time: 0.000647 seconds
+Results match between parallel and serial computations.
+
+Run 2:
+Arrays creation time: 0.014742 seconds
+Parallel computation time: 0.000615 seconds
+Array 0 non-zero count: 90062
+Array 1 non-zero count: 89912
+Array 2 non-zero count: 90032
+Array 3 non-zero count: 90045
+Serial computation time: 0.000650 seconds
+Results match between parallel and serial computations.
+
+Run 3:
+Arrays creation time: 0.008912 seconds
+Parallel computation time: 0.000517 seconds
+Array 0 non-zero count: 90062
+Array 1 non-zero count: 89912
+Array 2 non-zero count: 90032
+Array 3 non-zero count: 90045
+Serial computation time: 0.000340 seconds
+Results match between parallel and serial computations.

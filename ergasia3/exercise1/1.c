@@ -144,13 +144,16 @@ int main(int argc, char *argv[])
 
     //parallel local multiplication
     double t_comp_start = MPI_Wtime();
-    int local_res_len = local_len + n + 1;
-    int *local_result = calloc((size_t)local_res_len, sizeof(int));
-    if (!local_result) { perror("calloc"); MPI_Abort(MPI_COMM_WORLD, EXIT_FAILURE); }
+    int full_len = 2 * n + 1;
+    int *local_result = calloc((size_t)full_len, sizeof(int));
+    if (!local_result) {
+        perror("calloc");
+        MPI_Abort(MPI_COMM_WORLD, EXIT_FAILURE);
+    }
 
     for (int i = 0; i < local_len; ++i) {
         int a = local_poly1[i];
-        int *res = local_result + i;
+        int *res = local_result + local_start + i;
         for (int j = 0; j <= n; ++j)
             res[j] += a * poly2[j];
     }
@@ -160,12 +163,7 @@ int main(int argc, char *argv[])
     double t_recv_start = MPI_Wtime();
     int *global_result = NULL;
     if (rank == 0) global_result = calloc((size_t)(2 * n + 1), sizeof(int));
-    if (rank == 0) {
-        MPI_Reduce(MPI_IN_PLACE, global_result + local_start, local_res_len, MPI_INT, MPI_SUM, 0, MPI_COMM_WORLD);
-    } 
-    else {
-        MPI_Reduce(local_result, global_result + local_start, local_res_len, MPI_INT, MPI_SUM, 0, MPI_COMM_WORLD);
-    }
+    MPI_Reduce(local_result, global_result, full_len, MPI_INT, MPI_SUM, 0, MPI_COMM_WORLD);
     double t_recv_end = MPI_Wtime();
     double t_total_end = MPI_Wtime();
 

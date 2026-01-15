@@ -8,7 +8,7 @@ PLOTS_DIR="$ROOT_DIR/plots"
 
 mkdir -p "$RESULTS_DIR" "$PLOTS_DIR"
 
-PROG="$SCRIPT_DIR/mergesort"
+PROG="$SCRIPT_DIR/../build/mergesort"
 SRC="$SCRIPT_DIR/mergesort.c"
 OUTPUT_FILE="$RESULTS_DIR/3.txt"
 PLOT_SCRIPT="$SCRIPT_DIR/plot_results.py"
