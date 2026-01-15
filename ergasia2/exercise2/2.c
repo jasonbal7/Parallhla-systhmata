@@ -92,7 +92,7 @@ CSRMatrix convert_to_csr(int **array, int m, int n)
 CSRMatrix convert_to_csr_omp(int **array, int m, int n) 
 {
     CSRMatrix csr;
-    int nnz = 0;
+    //int nnz = 0;
 
     //step 1 count non zero per row
     int *row_nnz = (int *)calloc(m, sizeof(int));

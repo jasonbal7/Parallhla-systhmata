@@ -5,24 +5,24 @@ Testing degree = 10000
 Running: degree1 = 10000, degree2 = 10000, threads = 2 4 6 8 10 12
 
 ===== AVERAGES =====
-Sequential multiplication average: .0470 seconds
-Parallel multiplication with 2 threads average: .0307 seconds
-Parallel multiplication with 4 threads average: .0170 seconds
-Parallel multiplication with 6 threads average: .0180 seconds
-Parallel multiplication with 8 threads average: .0157 seconds
-Parallel multiplication with 10 threads average: .0137 seconds
-Parallel multiplication with 12 threads average: .0165 seconds
+Sequential multiplication average: .0465 seconds
+Parallel multiplication with 2 threads average: .0292 seconds
+Parallel multiplication with 4 threads average: .0195 seconds
+Parallel multiplication with 6 threads average: .0185 seconds
+Parallel multiplication with 8 threads average: .0155 seconds
+Parallel multiplication with 10 threads average: .0122 seconds
+Parallel multiplication with 12 threads average: .0125 seconds
 
 Testing degree = 100000
 -------------------------------------
 Running: degree1 = 100000, degree2 = 100000, threads = 2 4 6 8 10 12
 
 ===== AVERAGES =====
-Sequential multiplication average: 4.4820 seconds
-Parallel multiplication with 2 threads average: 2.9677 seconds
-Parallel multiplication with 4 threads average: 1.6332 seconds
-Parallel multiplication with 6 threads average: 1.2765 seconds
-Parallel multiplication with 8 threads average: 1.1302 seconds
-Parallel multiplication with 10 threads average: 1.0657 seconds
-Parallel multiplication with 12 threads average: 1.0365 seconds
+Sequential multiplication average: 4.5552 seconds
+Parallel multiplication with 2 threads average: 3.1525 seconds
+Parallel multiplication with 4 threads average: 1.7832 seconds
+Parallel multiplication with 6 threads average: 1.3387 seconds
+Parallel multiplication with 8 threads average: 1.1560 seconds
+Parallel multiplication with 10 threads average: 1.1532 seconds
+Parallel multiplication with 12 threads average: 1.1075 seconds
 
