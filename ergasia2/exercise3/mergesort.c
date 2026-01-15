@@ -72,13 +72,6 @@ bool is_sorted(int* A, int n) {
     return 1;
 }
 
-//Print array.
-// void print_array(int* A, int n) {
-//     for(int i = 0; i < n; i++) {
-//         printf("[%d] ", A[i]);
-//     }
-// }
-
 
 int main(int argc, char* argv[]) {
     if(argc != 4) {

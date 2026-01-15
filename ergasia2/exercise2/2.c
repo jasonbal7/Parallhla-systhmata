@@ -19,7 +19,7 @@ double now_seconds(void)
     return ts.tv_sec + ts.tv_nsec * 1e-9;
 }
 
-int **create_parse_array(int m, int n, double sparsity) 
+int **create_sparse_array(int m, int n, double sparsity) 
 {
     int **array = (int **)malloc(m *sizeof(int *));
     for (int i = 0; i < m; i++) {
@@ -257,7 +257,7 @@ int main(int argc, char *argv[])
     srand(time(NULL));
     omp_set_num_threads(threads);
 
-    int **array = create_parse_array(m, m, sparsity);
+    int **array = create_sparse_array(m, m, sparsity);
     int *vector = create_vector(m);
 
     double start = now_seconds();
