@@ -26,11 +26,17 @@ SEQ_RE = re.compile(r"Sequential multiplication average:\s*([0-9.]+)")
 PAR_RE = re.compile(
     r"Parallel multiplication with\s+(\d+)\s+(threads|processes)\s+average:\s*([0-9.]+)"
 )
+SEQ_TAKE_RE = re.compile(r"Sequential multiplication took\s*([0-9.]+)\s*seconds")
+PAR_TAKE_RE = re.compile(
+    r"Parallel multiplication with\s+(\d+)\s+(threads|processes)\s+took\s*([0-9.]+)\s*seconds"
+)
 
 
 def parse_results(path: pathlib.Path) -> Series:
     data: Series = {}
     current_degree: int | None = None
+    seq_runs: Dict[int, List[float]] = {}
+    par_runs: Dict[int, Dict[int, List[float]]] = {}
 
     with path.open(encoding="utf-8") as fh:
         for raw in fh:
@@ -38,6 +44,8 @@ def parse_results(path: pathlib.Path) -> Series:
             if line.startswith("Testing degree ="):
                 current_degree = int(line.split("=")[1])
                 data[current_degree] = {"sequential": None, "parallel": {}}
+                seq_runs.setdefault(current_degree, [])
+                par_runs.setdefault(current_degree, {})
                 continue
 
             if current_degree is None:
@@ -53,9 +61,33 @@ def parse_results(path: pathlib.Path) -> Series:
                 workers = int(par_match.group(1))
                 value = float(par_match.group(3))
                 data[current_degree]["parallel"][workers] = value
+                continue
+
+            seq_take = SEQ_TAKE_RE.match(line)
+            if seq_take:
+                seq_runs[current_degree].append(float(seq_take.group(1)))
+                continue
+
+            par_take = PAR_TAKE_RE.match(line)
+            if par_take:
+                workers = int(par_take.group(1))
+                value = float(par_take.group(3))
+                par_runs[current_degree].setdefault(workers, []).append(value)
 
     if not data:
         raise SystemExit(f"No summary data found in {path}")
+
+    for degree, payload in data.items():
+        if payload["sequential"] is None and seq_runs.get(degree):
+            values = seq_runs[degree]
+            payload["sequential"] = sum(values) / len(values)
+
+        parallel: Dict[int, float] = payload["parallel"]  # type: ignore[assignment]
+        if par_runs.get(degree):
+            for workers, values in par_runs[degree].items():
+                if workers not in parallel and values:
+                    parallel[workers] = sum(values) / len(values)
+
     return data
 
 
@@ -79,9 +111,10 @@ def plot(
     elif rows == 1:
         axes = [axes]
 
-    colors = plt.rcParams["axes.prop_cycle"].by_key()["color"]
     label_colors = {
-        label: colors[idx % len(colors)] for idx, (label, _data) in enumerate(series)
+        "OMP": "#1f77b4",
+        "Pthreads": "#ff7f0e",
+        "MPI": "#2ca02c",
     }
 
     flat_axes = [ax for row in axes for ax in row]

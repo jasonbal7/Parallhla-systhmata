@@ -7,7 +7,7 @@ PLOTS_DIR="$SCRIPT_DIR/plots"
 
 mkdir -p "$RESULTS_DIR" "$PLOTS_DIR"
 
-PROG="$SCRIPT_DIR/2"
+PROG="$ROOT_DIR/build/2"
 SRC="$SCRIPT_DIR/2.c"
 OUTPUT_FILE="$RESULTS_DIR/results_mpi.txt"
 PLOT_SCRIPT="$SCRIPT_DIR/plot_results.py"
