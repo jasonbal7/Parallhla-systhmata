@@ -42,24 +42,82 @@ int *multiply_sequential(const int *poly1, int deg1, const int *poly2, int deg2)
     return result;
 }
 
-int *multiply_parallel_mpi_slice(const int *poly2, int d2, int *local_poly1, int local_start, int local_len)
+void compute_local_slice(int n, int rank, int size, int *local_start, int *local_len)
 {
-    int result_len = local_start + local_len + d2 + 1; 
-    int *local_result = (int *)calloc(result_len, sizeof(int));
-    if (!local_result) { 
+    int chunk_size = (n + 1 + size - 1) / size;
+
+    *local_start = rank * chunk_size;
+    int end = *local_start + chunk_size;
+    if (end > n + 1) end = n + 1;
+
+    *local_len = end - *local_start;
+}
+
+void distribute_poly1(int *poly1, int n, int rank, int size, int local_start, int local_len, int **local_poly1)
+{
+    *local_poly1 = malloc((size_t)local_len * sizeof(int));
+    if (!*local_poly1) {
+        perror("malloc");
+        MPI_Finalize();
+        exit(EXIT_FAILURE);
+    }
+
+    if (rank == 0) {
+        memcpy(*local_poly1, poly1 + local_start, (size_t)local_len * sizeof(int));
+
+        int chunk_size = (n + 1 + size - 1) / size;
+
+        for (int p = 1; p < size; ++p) {
+            int p_start = p * chunk_size;
+            int p_end = p_start + chunk_size;
+            if (p_end > n + 1) p_end = n + 1;
+
+            int p_len = p_end - p_start;
+            MPI_Send(poly1 + p_start, p_len, MPI_INT, p, 0, MPI_COMM_WORLD);
+        }
+    }
+    else {
+        MPI_Recv(*local_poly1, local_len, MPI_INT, 0, 0, MPI_COMM_WORLD, MPI_STATUS_IGNORE);
+    }
+}   
+
+int *parallel_local_multiply(const int *local_poly1, int local_start, int local_len, const int *poly2, int n)
+{
+    int full_len = 2 * n + 1;
+    int *local_result = calloc((size_t)full_len, sizeof(int));
+    if (!local_result) {
         perror("calloc");
-         exit(EXIT_FAILURE); 
+        MPI_Finalize();
+        exit(EXIT_FAILURE);
     }
 
     for (int i = 0; i < local_len; ++i) {
         int a = local_poly1[i];
-        int *res = local_result + i;
-        for (int j = 0; j <= d2; ++j) {
+        int *res = local_result + local_start + i;
+        for (int j = 0; j <= n; ++j) {
             res[j] += a * poly2[j];
         }
     }
-
     return local_result;
+}
+
+
+int *reduce_results(int *local_result, int n, int rank)
+{
+    int full_len = 2 * n + 1;
+    int *global_result = NULL;
+
+    if (rank == 0) {
+        global_result = calloc((size_t)full_len, sizeof(int));
+        if (!global_result) {
+            perror("calloc");
+            MPI_Abort(MPI_COMM_WORLD, EXIT_FAILURE);
+        }
+    }
+
+    MPI_Reduce(local_result, global_result, full_len, MPI_INT, MPI_SUM, 0, MPI_COMM_WORLD);
+
+    return global_result;
 }
 
 double now_seconds(void)
@@ -95,7 +153,10 @@ int main(int argc, char *argv[])
     } 
     else {
         poly2 = malloc((size_t)(n + 1) * sizeof(int));
-        if (!poly2) { perror("malloc"); MPI_Abort(MPI_COMM_WORLD, EXIT_FAILURE); }
+        if (!poly2) { perror("malloc"); 
+            MPI_Finalize(); 
+            return EXIT_FAILURE; 
+        }
     }
 
     //sequential multiplication 
@@ -114,54 +175,25 @@ int main(int argc, char *argv[])
     MPI_Bcast(poly2, n + 1, MPI_INT, 0, MPI_COMM_WORLD);
 
     //determine local slice for each process
-    int chunk_size = (n + 1 + size - 1) / size;         //ceiling division
-    int local_start = rank * chunk_size;
-    int local_end = (local_start + chunk_size < n + 1) ? local_start + chunk_size : n + 1;
-    int local_len = local_end - local_start;
+    int local_start, local_len;
+    compute_local_slice(n, rank, size, &local_start, &local_len);
 
-    int *local_poly1 = malloc((size_t)local_len * sizeof(int));
-    if (!local_poly1) { perror("malloc"); MPI_Abort(MPI_COMM_WORLD, EXIT_FAILURE); }
-
-    if (rank == 0) {
-        //copy own slice
-        memcpy(local_poly1, poly1 + local_start, (size_t)local_len * sizeof(int));
-        //end slices to other processes
-        for (int p = 1; p < size; ++p) {
-            int p_start = p * chunk_size;
-            int p_end = (p_start + chunk_size < n + 1) ? p_start + chunk_size : n + 1;
-            int p_len = p_end - p_start;
-            MPI_Send(poly1 + p_start, p_len, MPI_INT, p, 0, MPI_COMM_WORLD);
-        }
-    } 
-    else {
-        MPI_Recv(local_poly1, local_len, MPI_INT, 0, 0, MPI_COMM_WORLD, MPI_STATUS_IGNORE);
-    }
+    int *local_poly1 = NULL;
+    distribute_poly1(poly1, n, rank, size, local_start, local_len, &local_poly1);
 
     double t_send_end = MPI_Wtime();
 
+
     //parallel local multiplication
     double t_comp_start = MPI_Wtime();
-    int full_len = 2 * n + 1;
-    int *local_result = calloc((size_t)full_len, sizeof(int));
-    if (!local_result) {
-        perror("calloc");
-        MPI_Abort(MPI_COMM_WORLD, EXIT_FAILURE);
-    }
-
-    for (int i = 0; i < local_len; ++i) {
-        int a = local_poly1[i];
-        int *res = local_result + local_start + i;
-        for (int j = 0; j <= n; ++j)
-            res[j] += a * poly2[j];
-    }
+    int *local_result = parallel_local_multiply(local_poly1, local_start, local_len, poly2, n);
     double t_comp_end = MPI_Wtime();
 
     //reduce only relevant slice of results
     double t_recv_start = MPI_Wtime();
-    int *global_result = NULL;
-    if (rank == 0) global_result = calloc((size_t)(2 * n + 1), sizeof(int));
-    MPI_Reduce(local_result, global_result, full_len, MPI_INT, MPI_SUM, 0, MPI_COMM_WORLD);
+    int *global_result = reduce_results(local_result, n, rank);
     double t_recv_end = MPI_Wtime();
+    
     double t_total_end = MPI_Wtime();
 
     if (rank == 0) {
