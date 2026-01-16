@@ -10,7 +10,7 @@
 #define LOWER_BOUND -20
 #define UPPER_BOUND 20
 
-int *create_random_polynomial_seeded(int degree, unsigned int *seed)
+int *create_random_polynomial(int degree)
 {
     int *poly = (int *)malloc((size_t)(degree + 1) * sizeof(int));
     if (!poly) {
@@ -18,7 +18,7 @@ int *create_random_polynomial_seeded(int degree, unsigned int *seed)
         exit(EXIT_FAILURE);
     }
     for (int i = 0; i <= degree; ++i) {
-        int r = (int)(rand_r(seed) % (UPPER_BOUND - LOWER_BOUND + 1));
+        int r = (int)(rand() % (UPPER_BOUND - LOWER_BOUND + 1));
         poly[i] = r + LOWER_BOUND;
     }
     return poly;
@@ -78,23 +78,20 @@ int main(int argc, char *argv[])
     MPI_Comm_size(MPI_COMM_WORLD, &size);
 
     if (argc < 2) {
-        if (rank == 0) fprintf(stderr, "Usage: %s <degree> [seed]\n", argv[0]);
+        if (rank == 0) fprintf(stderr, "Usage: %s <degree>\n", argv[0]);
         MPI_Finalize();
         return EXIT_FAILURE;
     }
 
     int n = atoi(argv[1]);
-    unsigned int seed = 12345u;
-    if (argc >= 3) seed = (unsigned int)strtoul(argv[2], NULL, 10);
+    srand(time(NULL));
 
     int *poly1 = NULL;
     int *poly2 = NULL;
 
     if (rank == 0) {
-        unsigned int seed1 = seed;
-        unsigned int seed2 = seed ^ 0x9e3779b9u;
-        poly1 = create_random_polynomial_seeded(n, &seed1);
-        poly2 = create_random_polynomial_seeded(n, &seed2);
+        poly1 = create_random_polynomial(n);
+        poly2 = create_random_polynomial(n);
     } 
     else {
         poly2 = malloc((size_t)(n + 1) * sizeof(int));

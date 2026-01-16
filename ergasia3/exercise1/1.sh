@@ -1,148 +1,210 @@
-#!/bin/bash
-set -euo pipefail
+#!/bin/csh -f
 
-SCRIPT_DIR=$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)
-ROOT_DIR=$(cd "$SCRIPT_DIR/.." && pwd)
-RESULTS_DIR="$ROOT_DIR/results"
-PLOTS_DIR="$ROOT_DIR/plots"
-mkdir -p "$RESULTS_DIR" "$PLOTS_DIR"
+# Polynomial multiplication benchmark runner (MPI)
+# Supports:
+#   mpiexec -f machines -n <p> <program>
+#   mpiexec -hosts linux01,linux02 -n <p> <program>
 
-SRC="$SCRIPT_DIR/1.c"
-PROG="$SCRIPT_DIR/1"
-OUTPUT_FILE="$RESULTS_DIR/1.txt"
-PLOT_SCRIPT="$SCRIPT_DIR/plot_results.py"
+set script_dir = `dirname "$0"`
+set script_dir = `cd "$script_dir" && pwd`
+set root_dir = `cd "$script_dir/.." && pwd`
 
-#Defaults like previous ergasies
-DEGREES=(10000 100000)
-PROCS=(2 4 10 16)
-REPEATS=4
+set results_dir = "$root_dir/results"
+set plots_dir = "$root_dir/plots"
+mkdir -p "$results_dir" "$plots_dir"
 
-if [ -n "${DEGREES_OVERRIDE:-}" ]; then
-    read -r -a DEGREES <<< "$DEGREES_OVERRIDE"
-fi
-if [ -n "${PROCS_OVERRIDE:-}" ]; then
-    read -r -a PROCS <<< "$PROCS_OVERRIDE"
-fi
-if [ -n "${REPEATS_OVERRIDE:-}" ]; then
-    REPEATS="$REPEATS_OVERRIDE"
-fi
+set src = "$script_dir/1.c"
+set prog = "$root_dir/build/1"
+set output_file = "$results_dir/1.txt"
+set plot_script = "$script_dir/plot_results.py"
 
-if [ ! -f "$SRC" ]; then
-    echo "Error: source '$SRC' not found." >&2
+alias log 'echo "\!:*" | tee -a "$output_file"'
+
+set DEGREES = (10000 100000)
+set PROCS = (2 4 8 16)
+set REPEATS = 4
+
+set MPI_MACHINES_FILE = "$script_dir/machines"
+set MPI_HOSTS = ""
+
+set usage_exit = 0
+goto MAIN
+
+USAGE:
+cat << EOF
+Usage: ./1.sh [options]
+
+Options:
+    --machines-file <path>          Hostfile path (default: ./machines)
+    --hosts <h1,h2,...>             Host list (if provided, runs with -hosts)
+    -h, --help                      Show this help
+
+Env vars are not used.
+EOF
+exit $usage_exit
+
+MAIN:
+
+while ( $#argv > 0 )
+    switch ("$argv[1]")
+        case "--machines-file":
+            if ( $#argv < 2 ) then
+                echo "Error: --machines-file needs a value" >&2
+                set usage_exit = 2
+                goto USAGE
+            endif
+            set MPI_MACHINES_FILE = "$argv[2]"
+            shift argv
+            shift argv
+            breaksw
+        case "--hosts":
+            if ( $#argv < 2 ) then
+                echo "Error: --hosts needs a value" >&2
+                set usage_exit = 2
+                goto USAGE
+            endif
+            set MPI_HOSTS = "$argv[2]"
+            shift argv
+            shift argv
+            breaksw
+        case "-h":
+        case "--help":
+            set usage_exit = 0
+            goto USAGE
+        default:
+            echo "Unknown option: $argv[1]" >&2
+            set usage_exit = 2
+            goto USAGE
+    endsw
+end
+
+set MPIEXEC_OPTS = ()
+if ( "$MPI_HOSTS" == "" ) then
+    if ( ! -f "$MPI_MACHINES_FILE" ) then
+        echo "Error: MPI machines file '$MPI_MACHINES_FILE' not found." >&2
+        exit 1
+    endif
+    set MPIEXEC_OPTS = ( $MPIEXEC_OPTS -f "$MPI_MACHINES_FILE" )
+else
+    set MPIEXEC_OPTS = ( $MPIEXEC_OPTS -hosts "$MPI_HOSTS" )
+endif
+
+if ( ! -f "$src" ) then
+    echo "Error: source '$src' not found." >&2
     exit 1
-fi
+endif
+if ( ! -x "$prog" ) then
+    echo "Error: program '$prog' not found or not executable." >&2
+    echo "Build it first (e.g., run 'make' in ergasia3)." >&2
+    exit 1
+endif
 
-# Build (rebuild if missing or source newer)
-if [ ! -x "$PROG" ] || [ "$SRC" -nt "$PROG" ]; then
-    echo "Building with mpicc..."
-    CFLAGS_DEFAULT="-O3 -march=native -mtune=native -funroll-loops -pipe"
-    CFLAGS_USE="${CFLAGS:-$CFLAGS_DEFAULT}"
-    mpicc $CFLAGS_USE -Wall -Wextra -o "$PROG" "$SRC"
-fi
+echo "--------Polynomial Multiplication Benchmark (ergasia3/exercise1 MPI)--------" >! "$output_file"
+echo "" >> "$output_file"
 
-echo "--------Polynomial Multiplication Benchmark (ergasia3/exercise1 MPI)--------" > "$OUTPUT_FILE"
-echo "" >> "$OUTPUT_FILE"
-
-log() {
-    echo "$1" >> "$OUTPUT_FILE"
-    echo "$1"
-}
-
-extract_first_number() {
-    # Usage: extract_first_number "<regex>" "<text>"
-    # Prints the first numeric token (e.g. 0.123, .123, 1) from the first line matching regex.
-    local pattern="$1"
-    local text="$2"
-    echo "$text" | awk -v pat="$pattern" '
-        $0 ~ pat {
-            for (i = 1; i <= NF; i++) {
-                if ($i ~ /^[0-9]*\.?[0-9]+$/) { print $i; exit }
-            }
-        }
-    '
-}
-
-for deg in "${DEGREES[@]}"; do
+foreach deg ( $DEGREES )
     log "Testing degree = $deg"
     log "-------------------------------------"
-    log "Running: degree = $deg, processes = ${PROCS[*]}"
+    log "Running: degree = $deg, processes = $PROCS"
     log ""
 
-    # Deterministic seed per degree so all runs use identical polynomials.
-    SEED=$((1000 + deg))
+    set seq_sum = 0
+    set send_sum = ()
+    set comp_sum = ()
+    set recv_sum = ()
+    set total_sum = ()
 
-    # Track averages for each process count
-    seq_sum=0
-    declare -A par_sum send_sum comp_sum recv_sum
-    for p in "${PROCS[@]}"; do
-        par_sum[$p]=0
-        send_sum[$p]=0
-        comp_sum[$p]=0
-        recv_sum[$p]=0
-    done
+    @ idx = 1
+    while ( $idx <= $#PROCS )
+        set send_sum = ( $send_sum 0 )
+        set comp_sum = ( $comp_sum 0 )
+        set recv_sum = ( $recv_sum 0 )
+        set total_sum = ( $total_sum 0 )
+        @ idx++
+    end
 
-    for ((run=1; run<=REPEATS; run++)); do
-        for p in "${PROCS[@]}"; do
-            outp=$(mpiexec -n "$p" "$PROG" "$deg" "$SEED")
+    @ run = 1
+    while ( $run <= $REPEATS )
+        @ idx = 1
+        foreach p ( $PROCS )
+            set tmp = `mktemp`
+            set cmd = ( mpiexec $MPIEXEC_OPTS -n $p "$prog" $deg )
 
-            # Use the sequential time from the first process-count run per repeat.
-            if [ "$p" -eq "${PROCS[0]}" ]; then
-                seq=$(extract_first_number '^Sequential time:' "$outp")
-                if [ -z "$seq" ]; then
-                    echo "Error: failed to parse sequential time for degree=$deg" >&2
-                    echo "$outp" >&2
-                    exit 1
-                fi
-                seq_sum=$(echo "$seq_sum + $seq" | bc)
-            fi
-
-            # Support both label styles:
-            # - Newer: "Time to send data:", "Time for parallel computation:", "Time to receive results:", "Total parallel time:"
-            # - Older: "Time to send slices:", "Parallel computation:", "Time to gather results:", "Total parallel:"
-            send=$(extract_first_number '^(Time to send data:|Time to send slices:)' "$outp")
-            comp=$(extract_first_number '^(Time for parallel computation:|Parallel computation:)' "$outp")
-            recv=$(extract_first_number '^(Time to receive results:|Time to gather results:)' "$outp")
-            total=$(extract_first_number '^(Total parallel time:|Total parallel:)' "$outp")
-
-            if [ -z "$send" ] || [ -z "$comp" ] || [ -z "$recv" ] || [ -z "$total" ]; then
-                echo "Error: failed to parse timings for degree=$deg p=$p" >&2
-                echo "$outp" >&2
+            $cmd >&! "$tmp"
+            if ( $status != 0 ) then
+                echo "Error: run failed for degree=$deg p=$p" >&2
+                cat "$tmp" >&2
+                /bin/rm -f "$tmp"
                 exit 1
-            fi
+            endif
 
-            send_sum[$p]=$(echo "${send_sum[$p]} + $send" | bc)
-            comp_sum[$p]=$(echo "${comp_sum[$p]} + $comp" | bc)
-            recv_sum[$p]=$(echo "${recv_sum[$p]} + $recv" | bc)
-            par_sum[$p]=$(echo "${par_sum[$p]} + $total" | bc)
-        done
-    done
+            # Sequential time: take from first process-count only
+            if ( $idx == 1 ) then
+                set seq = `awk '/^Sequential time:/{for(i=1;i<=NF;i++) if($i ~ /^[0-9]*\.?[0-9]+$/){print $i; exit}}' "$tmp"`
+                if ( "$seq" == "" ) then
+                    echo "Error: failed to parse sequential time for degree=$deg" >&2
+                    cat "$tmp" >&2
+                    /bin/rm -f "$tmp"
+                    exit 1
+                endif
+                set seq_sum = `echo "$seq_sum $seq" | awk '{printf "%.6f", $1+$2}'`
+            endif
+
+            # Parallel timings
+            set send = `awk '/^(Time to send data:|Time to send slices:)/{for(i=1;i<=NF;i++) if($i ~ /^[0-9]*\.?[0-9]+$/){print $i; exit}}' "$tmp"`
+            set comp = `awk '/^(Time for parallel computation:|Parallel computation:)/{for(i=1;i<=NF;i++) if($i ~ /^[0-9]*\.?[0-9]+$/){print $i; exit}}' "$tmp"`
+            set recv = `awk '/^(Time to receive results:|Time to gather results:)/{for(i=1;i<=NF;i++) if($i ~ /^[0-9]*\.?[0-9]+$/){print $i; exit}}' "$tmp"`
+            set total = `awk '/^(Total parallel time:|Total parallel:)/{for(i=1;i<=NF;i++) if($i ~ /^[0-9]*\.?[0-9]+$/){print $i; exit}}' "$tmp"`
+
+            if ( "$send" == "" || "$comp" == "" || "$recv" == "" || "$total" == "" ) then
+                echo "Error: failed to parse timings for degree=$deg p=$p" >&2
+                cat "$tmp" >&2
+                /bin/rm -f "$tmp"
+                exit 1
+            endif
+
+            set send_sum[$idx] = `echo "$send_sum[$idx] $send" | awk '{printf "%.6f", $1+$2}'`
+            set comp_sum[$idx] = `echo "$comp_sum[$idx] $comp" | awk '{printf "%.6f", $1+$2}'`
+            set recv_sum[$idx] = `echo "$recv_sum[$idx] $recv" | awk '{printf "%.6f", $1+$2}'`
+            set total_sum[$idx] = `echo "$total_sum[$idx] $total" | awk '{printf "%.6f", $1+$2}'`
+
+            /bin/rm -f "$tmp"
+            @ idx++
+        end
+        @ run++
+    end
 
     log "===== AVERAGES ====="
-    seq_avg=$(echo "scale=6; $seq_sum / $REPEATS" | bc)
+    set seq_avg = `echo "$seq_sum $REPEATS" | awk '{printf "%.6f", $1/$2}'`
     log "Sequential multiplication average: $seq_avg seconds"
 
-    for p in "${PROCS[@]}"; do
-        total_avg=$(echo "scale=6; ${par_sum[$p]} / $REPEATS" | bc)
-        send_avg=$(echo "scale=6; ${send_sum[$p]} / $REPEATS" | bc)
-        comp_avg=$(echo "scale=6; ${comp_sum[$p]} / $REPEATS" | bc)
-        recv_avg=$(echo "scale=6; ${recv_sum[$p]} / $REPEATS" | bc)
+    @ idx = 1
+    foreach p ( $PROCS )
+        set total_avg = `echo "$total_sum[$idx] $REPEATS" | awk '{printf "%.6f", $1/$2}'`
+        set send_avg = `echo "$send_sum[$idx] $REPEATS" | awk '{printf "%.6f", $1/$2}'`
+        set comp_avg = `echo "$comp_sum[$idx] $REPEATS" | awk '{printf "%.6f", $1/$2}'`
+        set recv_avg = `echo "$recv_sum[$idx] $REPEATS" | awk '{printf "%.6f", $1/$2}'`
 
         log "Parallel multiplication with $p processes average: $total_avg seconds"
         log "  Send average: $send_avg seconds"
         log "  Compute average: $comp_avg seconds"
         log "  Receive average: $recv_avg seconds"
-    done
+        log ""
+        @ idx++
+    end
 
-    echo "" >> "$OUTPUT_FILE"
+    echo "" >> "$output_file"
+end
 
-done
-
-if command -v python3 >/dev/null 2>&1 && [ -f "$PLOT_SCRIPT" ]; then
-    if MPLBACKEND=Agg python3 "$PLOT_SCRIPT" "$OUTPUT_FILE" --output-dir "$PLOTS_DIR" --table; then
-        echo "Generated plots in $PLOTS_DIR"
+which python3 >& /dev/null
+if ( $status == 0 && -f "$plot_script" ) then
+    setenv MPLBACKEND Agg
+    python3 "$plot_script" "$output_file" --output-dir "$plots_dir" --table
+    if ( $status == 0 ) then
+        echo "Generated plots in $plots_dir"
     else
-        echo "Warning: plotting failed (missing matplotlib?)." | tee -a "$OUTPUT_FILE"
-    fi
+        echo "Warning: plotting failed (missing matplotlib?)." | tee -a "$output_file"
+    endif
 else
-    echo "Plot script missing or python3 unavailable; skipping plots." | tee -a "$OUTPUT_FILE"
-fi
+    echo "Plot script missing or python3 unavailable; skipping plots." | tee -a "$output_file"
+endif

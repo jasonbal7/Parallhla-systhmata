@@ -2,31 +2,55 @@
 
 Testing degree = 10000
 -------------------------------------
-Running: degree = 10000, processes = 2 4
+Running: degree = 10000, processes = 2 4 8 16
 
 ===== AVERAGES =====
-Sequential multiplication average: .354248 seconds
-Parallel multiplication with 2 processes average: .354491 seconds
-  Send average: .000062 seconds
-  Compute average: .354347 seconds
-  Receive average: .000081 seconds
-Parallel multiplication with 4 processes average: .361610 seconds
-  Send average: .000028 seconds
-  Compute average: .361470 seconds
-  Receive average: .000111 seconds
+Sequential multiplication average: 0.031528 seconds
+Parallel multiplication with 2 processes average: 0.028515 seconds
+ Send average: 0.000061 seconds
+ Compute average: 0.012741 seconds
+ Receive average: 0.015710 seconds
+
+Parallel multiplication with 4 processes average: 0.048833 seconds
+ Send average: 0.000095 seconds
+ Compute average: 0.009072 seconds
+ Receive average: 0.039664 seconds
+
+Parallel multiplication with 8 processes average: 0.109496 seconds
+ Send average: 0.032269 seconds
+ Compute average: 0.004773 seconds
+ Receive average: 0.072451 seconds
+
+Parallel multiplication with 16 processes average: 0.201831 seconds
+ Send average: 0.138318 seconds
+ Compute average: 0.000883 seconds
+ Receive average: 0.062627 seconds
+
 
 Testing degree = 100000
 -------------------------------------
-Running: degree = 100000, processes = 2 4
+Running: degree = 100000, processes = 2 4 8 16
 
 ===== AVERAGES =====
-Sequential multiplication average: 35.836356 seconds
-Parallel multiplication with 2 processes average: 35.895401 seconds
-  Send average: .000321 seconds
-  Compute average: 35.894912 seconds
-  Receive average: .000167 seconds
-Parallel multiplication with 4 processes average: 37.661515 seconds
-  Send average: .000307 seconds
-  Compute average: 37.661041 seconds
-  Receive average: .000165 seconds
+Sequential multiplication average: 5.606399 seconds
+Parallel multiplication with 2 processes average: 2.988899 seconds
+ Send average: 0.047482 seconds
+ Compute average: 2.826739 seconds
+ Receive average: 0.114674 seconds
+
+Parallel multiplication with 4 processes average: 2.096097 seconds
+ Send average: 0.191839 seconds
+ Compute average: 1.751862 seconds
+ Receive average: 0.152393 seconds
+
+Parallel multiplication with 8 processes average: 1.239928 seconds
+ Send average: 0.153248 seconds
+ Compute average: 0.877943 seconds
+ Receive average: 0.208734 seconds
+
+Parallel multiplication with 16 processes average: 0.940522 seconds
+ Send average: 0.241609 seconds
+ Compute average: 0.429754 seconds
+ Receive average: 0.269157 seconds
+
 
