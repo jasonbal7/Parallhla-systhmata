@@ -1,2 +1,0 @@
-linux11.di.uoa.gr slots=4
-linux12.di.uoa.gr slots=4
