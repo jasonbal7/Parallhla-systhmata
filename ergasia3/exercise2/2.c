@@ -99,6 +99,63 @@ void dense_multiply_local(int* local_matrix, int* x, int* y, int rows, int cols)
 }
 
 
+void run_serial_process(int n, double sparsity, int iterations) {   // Runs only when we have one process.
+    srand(time(NULL));
+
+    int* matrix = create_sparse_array(n, sparsity);
+    int* global_vector = create_vector(n);
+    int* x = (int*)malloc(n * sizeof(int));
+    int* y = (int*)malloc(n * sizeof(int));
+
+    memcpy(x, global_vector, n * sizeof(int));
+
+    double t_start = MPI_Wtime();
+    CSRMatrix csr = convert_to_csr(matrix, n);
+    double t_construct = MPI_Wtime() - t_start;
+
+    double t_comm_csr = 0.0;
+
+    t_start = MPI_Wtime();
+    for(int i = 0; i < iterations; i++) {
+        csr_multiply_local(csr, x, y);
+        memcpy(x, y, n * sizeof(int));    // y is the x in the next iteration.
+    }
+    double t_calc_csr = MPI_Wtime() - t_start;
+
+    printf("CSR with 1 processes and %d iterations.\n", iterations);
+    printf("Final result vector (CRS):\n");
+    for(int i = 0; i < n; i++){
+        printf("%d ", x[i]);
+    }
+    printf("\nConstruction Time CSR   = %f sec\n", t_construct);
+    printf("Communication Time CSR    = %f sec\n", t_comm_csr);
+    printf("Calculation Time CSR      = %f sec\n", t_calc_csr);
+    printf("Total CSR time            = %f sec\n", t_construct + t_comm_csr + t_calc_csr);
+
+    memcpy(x, global_vector, n * sizeof(int));
+    double t_comm_dense = 0.0;
+
+    t_start = MPI_Wtime();
+    for(int i = 0; i < iterations; i++) {     // Dense Calculation.
+        dense_multiply_local(matrix, x, y, n, n);
+        memcpy(x, y, n * sizeof(int));
+    }
+    double t_calc_dense = MPI_Wtime() - t_start;
+
+    printf("Calculation Time Dense    = %f sec\n", t_calc_dense);
+    printf("Total Dense Time          = %f sec\n", t_comm_dense + t_calc_dense);
+    printf("----------------------\n\n\n");
+
+    free(matrix);
+    free(global_vector);
+    free(x);
+    free(y);
+    free(csr.values);
+    free(csr.col_index);
+    free(csr.row_ptr);
+}
+
+
 int main(int argc, char* argv[]) {
     MPI_Init(&argc, &argv);
 
@@ -116,6 +173,12 @@ int main(int argc, char* argv[]) {
     int n = atoi(argv[1]);
     double sparsity = atof(argv[2]);
     int iterations = atoi(argv[3]);
+
+    if(size == 1) {     // No communication needed for 1 process.
+        run_serial_process(n, sparsity, iterations);
+        MPI_Finalize();
+        return 0;
+    }
 
     double time_construct = 0.0;
     double time_comm_s = 0.0, time_comm_e = 0.0;

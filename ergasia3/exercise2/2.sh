@@ -1,24 +1,21 @@
 #!/bin/bash
 set -euo pipefail
 
-# --- Ρυθμίσεις Φακέλων ---
 SCRIPT_DIR=$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)
 RESULTS_DIR="$SCRIPT_DIR/results"
 PLOTS_DIR="$SCRIPT_DIR/plots"
 
 mkdir -p "$RESULTS_DIR" "$PLOTS_DIR"
 
-# --- Αρχεία ---
 PROG="$SCRIPT_DIR/2"
 SRC="$SCRIPT_DIR/2.c"
 OUTPUT_FILE="$RESULTS_DIR/results_mpi.txt"
 PLOT_SCRIPT="$SCRIPT_DIR/plot_results.py"
 
-# --- Παράμετροι Πειραμάτων ---
 SIZES=(1000 10000)
 SPARSITIES=(0.20 0.50 0.80)
 ITERATIONS=(10 20)
-PROCESSES=(1 2 4)
+PROCESSES=(1 2 4 8)
 REPEATS=4
 
 # --- Overrides ---
@@ -32,7 +29,7 @@ if [ -n "${REPEATS_OVERRIDE:-}" ]; then REPEATS="$REPEATS_OVERRIDE"; fi
 if [ ! -x "$PROG" ] || [ "$SRC" -nt "$PROG" ]; then
   if [ -f "$SRC" ]; then
     echo "Building $SRC using mpicc..."
-    mpicc -O3 -Wall "$SRC" -o "$PROG"
+    mpicc -Wall "$SRC" -o "$PROG"
     if [ $? -ne 0 ]; then
         echo "Error: Compilation failed!"
         exit 1
@@ -68,7 +65,6 @@ for n in "${SIZES[@]}"; do
       for p in "${PROCESSES[@]}"; do
         log "MPI Processes = $p"
 
-        # Initialize sums
         sum_construct=0
         sum_comm_csr=0
         sum_calc_csr=0
@@ -78,11 +74,8 @@ for n in "${SIZES[@]}"; do
         sum_total_dense=0
 
         for ((run=1; run<=REPEATS; run++)); do
-          # Εκτέλεση με oversubscribe για ασφάλεια σε περίπτωση πολλών processes
-          out=$(mpirun --oversubscribe -np "$p" "$PROG" "$n" "$sp" "$it")
+          out=$(mpiexec -f machines -n "$p" "$PROG" "$n" "$sp" "$it")
 
-          # --- Parsing based on specific printf strings in 2.c ---
-          
           # CSR Timings
           val_construct=$(echo "$out" | grep "Construction Time CSR" | awk -F '=' '{print $2}' | awk '{print $1}')
           val_comm_csr=$(echo "$out" | grep "Communication Time CSR" | awk -F '=' '{print $2}' | awk '{print $1}')

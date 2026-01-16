@@ -1,365 +1,473 @@
 -------- Sparse Matrix MPI Benchmark (Final Version) --------
 
-Date: Thu Jan 15 04:04:39 EET 2026
+Date: Παρ 16 Ιαν 2026 01:47:50 πμ EET
 Each case reports averages over REPEATS=4 runs.
 
 Testing N = 1000, Sparsity = 0.20, Iterations = 10
 -------------------------------------
 MPI Processes = 1
 ===== AVERAGES =====
-(i)   Avg CSR Construction Time : .003467 sec
-(ii)  Avg CSR Comm Time         : .002551 sec
-(iii) Avg CSR Calculation Time  : .003145 sec
-(iv)  Avg Dense Calculation Time: .002210 sec
-(v)   Avg TOTAL CSR Time        : .009163 sec
-(vi)  Avg TOTAL DENSE Time      : .004138 sec
+(i)   Avg CSR Construction Time : .028648 sec
+(ii)  Avg CSR Comm Time         : 0 sec
+(iii) Avg CSR Calculation Time  : .022912 sec
+(iv)  Avg Dense Calculation Time: .016545 sec
+(v)   Avg TOTAL CSR Time        : .051561 sec
+(vi)  Avg TOTAL DENSE Time      : .016545 sec
 
 MPI Processes = 2
 ===== AVERAGES =====
-(i)   Avg CSR Construction Time : .003596 sec
-(ii)  Avg CSR Comm Time         : .002509 sec
-(iii) Avg CSR Calculation Time  : .001256 sec
-(iv)  Avg Dense Calculation Time: .001006 sec
-(v)   Avg TOTAL CSR Time        : .007363 sec
-(vi)  Avg TOTAL DENSE Time      : .002835 sec
+(i)   Avg CSR Construction Time : .014640 sec
+(ii)  Avg CSR Comm Time         : .109298 sec
+(iii) Avg CSR Calculation Time  : .031805 sec
+(iv)  Avg Dense Calculation Time: .007845 sec
+(v)   Avg TOTAL CSR Time        : .155744 sec
+(vi)  Avg TOTAL DENSE Time      : .014341 sec
 
 MPI Processes = 4
 ===== AVERAGES =====
-(i)   Avg CSR Construction Time : .004396 sec
-(ii)  Avg CSR Comm Time         : .002829 sec
-(iii) Avg CSR Calculation Time  : .001076 sec
-(iv)  Avg Dense Calculation Time: .000906 sec
-(v)   Avg TOTAL CSR Time        : .008302 sec
-(vi)  Avg TOTAL DENSE Time      : .002956 sec
+(i)   Avg CSR Construction Time : .027472 sec
+(ii)  Avg CSR Comm Time         : .255997 sec
+(iii) Avg CSR Calculation Time  : .224128 sec
+(iv)  Avg Dense Calculation Time: .238081 sec
+(v)   Avg TOTAL CSR Time        : .507597 sec
+(vi)  Avg TOTAL DENSE Time      : .313545 sec
+
+MPI Processes = 8
+===== AVERAGES =====
+(i)   Avg CSR Construction Time : .030459 sec
+(ii)  Avg CSR Comm Time         : .191032 sec
+(iii) Avg CSR Calculation Time  : .326724 sec
+(iv)  Avg Dense Calculation Time: .334789 sec
+(v)   Avg TOTAL CSR Time        : .548216 sec
+(vi)  Avg TOTAL DENSE Time      : .503974 sec
 
 
 Testing N = 1000, Sparsity = 0.20, Iterations = 20
 -------------------------------------
 MPI Processes = 1
 ===== AVERAGES =====
-(i)   Avg CSR Construction Time : .003583 sec
-(ii)  Avg CSR Comm Time         : .002383 sec
-(iii) Avg CSR Calculation Time  : .004311 sec
-(iv)  Avg Dense Calculation Time: .004203 sec
-(v)   Avg TOTAL CSR Time        : .010279 sec
-(vi)  Avg TOTAL DENSE Time      : .006101 sec
+(i)   Avg CSR Construction Time : .019699 sec
+(ii)  Avg CSR Comm Time         : 0 sec
+(iii) Avg CSR Calculation Time  : .034530 sec
+(iv)  Avg Dense Calculation Time: .026850 sec
+(v)   Avg TOTAL CSR Time        : .054229 sec
+(vi)  Avg TOTAL DENSE Time      : .026850 sec
 
 MPI Processes = 2
 ===== AVERAGES =====
-(i)   Avg CSR Construction Time : .004040 sec
-(ii)  Avg CSR Comm Time         : .003006 sec
-(iii) Avg CSR Calculation Time  : .002365 sec
-(iv)  Avg Dense Calculation Time: .002015 sec
-(v)   Avg TOTAL CSR Time        : .009412 sec
-(vi)  Avg TOTAL DENSE Time      : .003727 sec
+(i)   Avg CSR Construction Time : .014495 sec
+(ii)  Avg CSR Comm Time         : .136044 sec
+(iii) Avg CSR Calculation Time  : .028782 sec
+(iv)  Avg Dense Calculation Time: .010119 sec
+(v)   Avg TOTAL CSR Time        : .179323 sec
+(vi)  Avg TOTAL DENSE Time      : .019368 sec
 
 MPI Processes = 4
 ===== AVERAGES =====
-(i)   Avg CSR Construction Time : .003991 sec
-(ii)  Avg CSR Comm Time         : .002796 sec
-(iii) Avg CSR Calculation Time  : .002123 sec
-(iv)  Avg Dense Calculation Time: .001692 sec
-(v)   Avg TOTAL CSR Time        : .008910 sec
-(vi)  Avg TOTAL DENSE Time      : .003646 sec
+(i)   Avg CSR Construction Time : .021777 sec
+(ii)  Avg CSR Comm Time         : .249790 sec
+(iii) Avg CSR Calculation Time  : .478429 sec
+(iv)  Avg Dense Calculation Time: .520041 sec
+(v)   Avg TOTAL CSR Time        : .749997 sec
+(vi)  Avg TOTAL DENSE Time      : .700037 sec
+
+MPI Processes = 8
+===== AVERAGES =====
+(i)   Avg CSR Construction Time : .015127 sec
+(ii)  Avg CSR Comm Time         : .140862 sec
+(iii) Avg CSR Calculation Time  : .502676 sec
+(iv)  Avg Dense Calculation Time: .444283 sec
+(v)   Avg TOTAL CSR Time        : .658666 sec
+(vi)  Avg TOTAL DENSE Time      : .528257 sec
 
 
 Testing N = 1000, Sparsity = 0.50, Iterations = 10
 -------------------------------------
 MPI Processes = 1
 ===== AVERAGES =====
-(i)   Avg CSR Construction Time : .004411 sec
-(ii)  Avg CSR Comm Time         : .001528 sec
-(iii) Avg CSR Calculation Time  : .001393 sec
-(iv)  Avg Dense Calculation Time: .001876 sec
-(v)   Avg TOTAL CSR Time        : .007334 sec
-(vi)  Avg TOTAL DENSE Time      : .003354 sec
+(i)   Avg CSR Construction Time : .029379 sec
+(ii)  Avg CSR Comm Time         : 0 sec
+(iii) Avg CSR Calculation Time  : .017445 sec
+(iv)  Avg Dense Calculation Time: .006414 sec
+(v)   Avg TOTAL CSR Time        : .046825 sec
+(vi)  Avg TOTAL DENSE Time      : .006414 sec
 
 MPI Processes = 2
 ===== AVERAGES =====
-(i)   Avg CSR Construction Time : .005241 sec
-(ii)  Avg CSR Comm Time         : .001680 sec
-(iii) Avg CSR Calculation Time  : .001034 sec
-(iv)  Avg Dense Calculation Time: .001043 sec
-(v)   Avg TOTAL CSR Time        : .007956 sec
-(vi)  Avg TOTAL DENSE Time      : .002675 sec
+(i)   Avg CSR Construction Time : .022273 sec
+(ii)  Avg CSR Comm Time         : .109978 sec
+(iii) Avg CSR Calculation Time  : .001855 sec
+(iv)  Avg Dense Calculation Time: .011802 sec
+(v)   Avg TOTAL CSR Time        : .134107 sec
+(vi)  Avg TOTAL DENSE Time      : .034481 sec
 
 MPI Processes = 4
 ===== AVERAGES =====
-(i)   Avg CSR Construction Time : .005549 sec
-(ii)  Avg CSR Comm Time         : .002046 sec
-(iii) Avg CSR Calculation Time  : .000773 sec
-(iv)  Avg Dense Calculation Time: .000914 sec
-(v)   Avg TOTAL CSR Time        : .008369 sec
-(vi)  Avg TOTAL DENSE Time      : .003195 sec
+(i)   Avg CSR Construction Time : .019375 sec
+(ii)  Avg CSR Comm Time         : .081475 sec
+(iii) Avg CSR Calculation Time  : .173219 sec
+(iv)  Avg Dense Calculation Time: .213247 sec
+(v)   Avg TOTAL CSR Time        : .274071 sec
+(vi)  Avg TOTAL DENSE Time      : .347507 sec
+
+MPI Processes = 8
+===== AVERAGES =====
+(i)   Avg CSR Construction Time : .019372 sec
+(ii)  Avg CSR Comm Time         : .074126 sec
+(iii) Avg CSR Calculation Time  : .298368 sec
+(iv)  Avg Dense Calculation Time: .271113 sec
+(v)   Avg TOTAL CSR Time        : .391867 sec
+(vi)  Avg TOTAL DENSE Time      : .340148 sec
 
 
 Testing N = 1000, Sparsity = 0.50, Iterations = 20
 -------------------------------------
 MPI Processes = 1
 ===== AVERAGES =====
-(i)   Avg CSR Construction Time : .004469 sec
-(ii)  Avg CSR Comm Time         : .001248 sec
-(iii) Avg CSR Calculation Time  : .002933 sec
-(iv)  Avg Dense Calculation Time: .003597 sec
-(v)   Avg TOTAL CSR Time        : .008651 sec
-(vi)  Avg TOTAL DENSE Time      : .004954 sec
+(i)   Avg CSR Construction Time : .026583 sec
+(ii)  Avg CSR Comm Time         : 0 sec
+(iii) Avg CSR Calculation Time  : .011235 sec
+(iv)  Avg Dense Calculation Time: .018967 sec
+(v)   Avg TOTAL CSR Time        : .037819 sec
+(vi)  Avg TOTAL DENSE Time      : .018967 sec
 
 MPI Processes = 2
 ===== AVERAGES =====
-(i)   Avg CSR Construction Time : .004817 sec
-(ii)  Avg CSR Comm Time         : .001622 sec
-(iii) Avg CSR Calculation Time  : .001597 sec
-(iv)  Avg Dense Calculation Time: .002156 sec
-(v)   Avg TOTAL CSR Time        : .008037 sec
-(vi)  Avg TOTAL DENSE Time      : .003773 sec
+(i)   Avg CSR Construction Time : .026283 sec
+(ii)  Avg CSR Comm Time         : .020916 sec
+(iii) Avg CSR Calculation Time  : .026433 sec
+(iv)  Avg Dense Calculation Time: .007404 sec
+(v)   Avg TOTAL CSR Time        : .073634 sec
+(vi)  Avg TOTAL DENSE Time      : .016386 sec
 
 MPI Processes = 4
 ===== AVERAGES =====
-(i)   Avg CSR Construction Time : .005920 sec
-(ii)  Avg CSR Comm Time         : .002022 sec
-(iii) Avg CSR Calculation Time  : .001323 sec
-(iv)  Avg Dense Calculation Time: .001557 sec
-(v)   Avg TOTAL CSR Time        : .009266 sec
-(vi)  Avg TOTAL DENSE Time      : .003681 sec
+(i)   Avg CSR Construction Time : .024189 sec
+(ii)  Avg CSR Comm Time         : .088450 sec
+(iii) Avg CSR Calculation Time  : .429250 sec
+(iv)  Avg Dense Calculation Time: .391452 sec
+(v)   Avg TOTAL CSR Time        : .541891 sec
+(vi)  Avg TOTAL DENSE Time      : .497983 sec
+
+MPI Processes = 8
+===== AVERAGES =====
+(i)   Avg CSR Construction Time : .026457 sec
+(ii)  Avg CSR Comm Time         : .123045 sec
+(iii) Avg CSR Calculation Time  : .578245 sec
+(iv)  Avg Dense Calculation Time: .556336 sec
+(v)   Avg TOTAL CSR Time        : .727747 sec
+(vi)  Avg TOTAL DENSE Time      : .678673 sec
 
 
 Testing N = 1000, Sparsity = 0.80, Iterations = 10
 -------------------------------------
 MPI Processes = 1
 ===== AVERAGES =====
-(i)   Avg CSR Construction Time : .002464 sec
-(ii)  Avg CSR Comm Time         : .000540 sec
-(iii) Avg CSR Calculation Time  : .000633 sec
-(iv)  Avg Dense Calculation Time: .001988 sec
-(v)   Avg TOTAL CSR Time        : .003637 sec
-(vi)  Avg TOTAL DENSE Time      : .003187 sec
+(i)   Avg CSR Construction Time : .005739 sec
+(ii)  Avg CSR Comm Time         : 0 sec
+(iii) Avg CSR Calculation Time  : .005401 sec
+(iv)  Avg Dense Calculation Time: .004788 sec
+(v)   Avg TOTAL CSR Time        : .011140 sec
+(vi)  Avg TOTAL DENSE Time      : .004788 sec
 
 MPI Processes = 2
 ===== AVERAGES =====
-(i)   Avg CSR Construction Time : .002801 sec
-(ii)  Avg CSR Comm Time         : .000674 sec
-(iii) Avg CSR Calculation Time  : .000410 sec
-(iv)  Avg Dense Calculation Time: .000979 sec
-(v)   Avg TOTAL CSR Time        : .003885 sec
-(vi)  Avg TOTAL DENSE Time      : .002539 sec
+(i)   Avg CSR Construction Time : .007643 sec
+(ii)  Avg CSR Comm Time         : .052435 sec
+(iii) Avg CSR Calculation Time  : .032537 sec
+(iv)  Avg Dense Calculation Time: .039320 sec
+(v)   Avg TOTAL CSR Time        : .092615 sec
+(vi)  Avg TOTAL DENSE Time      : .098681 sec
 
 MPI Processes = 4
 ===== AVERAGES =====
-(i)   Avg CSR Construction Time : .002831 sec
-(ii)  Avg CSR Comm Time         : .000781 sec
-(iii) Avg CSR Calculation Time  : .000328 sec
-(iv)  Avg Dense Calculation Time: .000838 sec
-(v)   Avg TOTAL CSR Time        : .003942 sec
-(vi)  Avg TOTAL DENSE Time      : .002640 sec
+(i)   Avg CSR Construction Time : .003686 sec
+(ii)  Avg CSR Comm Time         : .056986 sec
+(iii) Avg CSR Calculation Time  : .243980 sec
+(iv)  Avg Dense Calculation Time: .221130 sec
+(v)   Avg TOTAL CSR Time        : .304653 sec
+(vi)  Avg TOTAL DENSE Time      : .359147 sec
+
+MPI Processes = 8
+===== AVERAGES =====
+(i)   Avg CSR Construction Time : .022777 sec
+(ii)  Avg CSR Comm Time         : .086998 sec
+(iii) Avg CSR Calculation Time  : .280017 sec
+(iv)  Avg Dense Calculation Time: .266016 sec
+(v)   Avg TOTAL CSR Time        : .389793 sec
+(vi)  Avg TOTAL DENSE Time      : .361012 sec
 
 
 Testing N = 1000, Sparsity = 0.80, Iterations = 20
 -------------------------------------
 MPI Processes = 1
 ===== AVERAGES =====
-(i)   Avg CSR Construction Time : .002397 sec
-(ii)  Avg CSR Comm Time         : .000515 sec
-(iii) Avg CSR Calculation Time  : .001215 sec
-(iv)  Avg Dense Calculation Time: .003545 sec
-(v)   Avg TOTAL CSR Time        : .004128 sec
-(vi)  Avg TOTAL DENSE Time      : .004744 sec
+(i)   Avg CSR Construction Time : .011749 sec
+(ii)  Avg CSR Comm Time         : 0 sec
+(iii) Avg CSR Calculation Time  : .006631 sec
+(iv)  Avg Dense Calculation Time: .020948 sec
+(v)   Avg TOTAL CSR Time        : .018380 sec
+(vi)  Avg TOTAL DENSE Time      : .020948 sec
 
 MPI Processes = 2
 ===== AVERAGES =====
-(i)   Avg CSR Construction Time : .002644 sec
-(ii)  Avg CSR Comm Time         : .000670 sec
-(iii) Avg CSR Calculation Time  : .000897 sec
-(iv)  Avg Dense Calculation Time: .001927 sec
-(v)   Avg TOTAL CSR Time        : .004212 sec
-(vi)  Avg TOTAL DENSE Time      : .003614 sec
+(i)   Avg CSR Construction Time : .006846 sec
+(ii)  Avg CSR Comm Time         : .022638 sec
+(iii) Avg CSR Calculation Time  : .001328 sec
+(iv)  Avg Dense Calculation Time: .015244 sec
+(v)   Avg TOTAL CSR Time        : .030812 sec
+(vi)  Avg TOTAL DENSE Time      : .045740 sec
 
 MPI Processes = 4
 ===== AVERAGES =====
-(i)   Avg CSR Construction Time : .002897 sec
-(ii)  Avg CSR Comm Time         : .000832 sec
-(iii) Avg CSR Calculation Time  : .000638 sec
-(iv)  Avg Dense Calculation Time: .001909 sec
-(v)   Avg TOTAL CSR Time        : .004367 sec
-(vi)  Avg TOTAL DENSE Time      : .004075 sec
+(i)   Avg CSR Construction Time : .007824 sec
+(ii)  Avg CSR Comm Time         : .062938 sec
+(iii) Avg CSR Calculation Time  : .472028 sec
+(iv)  Avg Dense Calculation Time: .437081 sec
+(v)   Avg TOTAL CSR Time        : .542791 sec
+(vi)  Avg TOTAL DENSE Time      : .526325 sec
+
+MPI Processes = 8
+===== AVERAGES =====
+(i)   Avg CSR Construction Time : .010690 sec
+(ii)  Avg CSR Comm Time         : .080704 sec
+(iii) Avg CSR Calculation Time  : .524282 sec
+(iv)  Avg Dense Calculation Time: .469801 sec
+(v)   Avg TOTAL CSR Time        : .615677 sec
+(vi)  Avg TOTAL DENSE Time      : .557325 sec
 
 
 Testing N = 10000, Sparsity = 0.20, Iterations = 10
 -------------------------------------
 MPI Processes = 1
 ===== AVERAGES =====
-(i)   Avg CSR Construction Time : .412442 sec
-(ii)  Avg CSR Comm Time         : .289688 sec
-(iii) Avg CSR Calculation Time  : .379280 sec
-(iv)  Avg Dense Calculation Time: .285561 sec
-(v)   Avg TOTAL CSR Time        : 1.081410 sec
-(vi)  Avg TOTAL DENSE Time      : .511430 sec
+(i)   Avg CSR Construction Time : 1.538275 sec
+(ii)  Avg CSR Comm Time         : 0 sec
+(iii) Avg CSR Calculation Time  : 1.582445 sec
+(iv)  Avg Dense Calculation Time: 1.291763 sec
+(v)   Avg TOTAL CSR Time        : 3.120720 sec
+(vi)  Avg TOTAL DENSE Time      : 1.291763 sec
 
 MPI Processes = 2
 ===== AVERAGES =====
-(i)   Avg CSR Construction Time : .410852 sec
-(ii)  Avg CSR Comm Time         : .299020 sec
-(iii) Avg CSR Calculation Time  : .318013 sec
-(iv)  Avg Dense Calculation Time: .206846 sec
-(v)   Avg TOTAL CSR Time        : 1.027886 sec
-(vi)  Avg TOTAL DENSE Time      : .454656 sec
+(i)   Avg CSR Construction Time : 1.694770 sec
+(ii)  Avg CSR Comm Time         : 8.242651 sec
+(iii) Avg CSR Calculation Time  : .967016 sec
+(iv)  Avg Dense Calculation Time: .650124 sec
+(v)   Avg TOTAL CSR Time        : 10.904439 sec
+(vi)  Avg TOTAL DENSE Time      : 1.832828 sec
 
 MPI Processes = 4
 ===== AVERAGES =====
-(i)   Avg CSR Construction Time : .466625 sec
-(ii)  Avg CSR Comm Time         : .388715 sec
-(iii) Avg CSR Calculation Time  : .312054 sec
-(iv)  Avg Dense Calculation Time: .190994 sec
-(v)   Avg TOTAL CSR Time        : 1.167394 sec
-(vi)  Avg TOTAL DENSE Time      : .451100 sec
+(i)   Avg CSR Construction Time : 1.929089 sec
+(ii)  Avg CSR Comm Time         : 3.976940 sec
+(iii) Avg CSR Calculation Time  : .752078 sec
+(iv)  Avg Dense Calculation Time: .565077 sec
+(v)   Avg TOTAL CSR Time        : 6.658108 sec
+(vi)  Avg TOTAL DENSE Time      : 3.048326 sec
+
+MPI Processes = 8
+===== AVERAGES =====
+(i)   Avg CSR Construction Time : 1.771796 sec
+(ii)  Avg CSR Comm Time         : 11.092425 sec
+(iii) Avg CSR Calculation Time  : .526565 sec
+(iv)  Avg Dense Calculation Time: .434450 sec
+(v)   Avg TOTAL CSR Time        : 13.390788 sec
+(vi)  Avg TOTAL DENSE Time      : 5.249140 sec
 
 
 Testing N = 10000, Sparsity = 0.20, Iterations = 20
 -------------------------------------
 MPI Processes = 1
 ===== AVERAGES =====
-(i)   Avg CSR Construction Time : .384972 sec
-(ii)  Avg CSR Comm Time         : .281840 sec
-(iii) Avg CSR Calculation Time  : .768430 sec
-(iv)  Avg Dense Calculation Time: .588595 sec
-(v)   Avg TOTAL CSR Time        : 1.435243 sec
-(vi)  Avg TOTAL DENSE Time      : .810413 sec
+(i)   Avg CSR Construction Time : 1.559647 sec
+(ii)  Avg CSR Comm Time         : 0 sec
+(iii) Avg CSR Calculation Time  : 2.969882 sec
+(iv)  Avg Dense Calculation Time: 2.690305 sec
+(v)   Avg TOTAL CSR Time        : 4.529530 sec
+(vi)  Avg TOTAL DENSE Time      : 2.690305 sec
 
 MPI Processes = 2
 ===== AVERAGES =====
-(i)   Avg CSR Construction Time : .437409 sec
-(ii)  Avg CSR Comm Time         : .411551 sec
-(iii) Avg CSR Calculation Time  : .647363 sec
-(iv)  Avg Dense Calculation Time: .405043 sec
-(v)   Avg TOTAL CSR Time        : 1.496325 sec
-(vi)  Avg TOTAL DENSE Time      : .644182 sec
+(i)   Avg CSR Construction Time : 2.150486 sec
+(ii)  Avg CSR Comm Time         : 3.521849 sec
+(iii) Avg CSR Calculation Time  : 2.405088 sec
+(iv)  Avg Dense Calculation Time: 1.641149 sec
+(v)   Avg TOTAL CSR Time        : 8.077424 sec
+(vi)  Avg TOTAL DENSE Time      : 4.229308 sec
 
 MPI Processes = 4
 ===== AVERAGES =====
-(i)   Avg CSR Construction Time : .470560 sec
-(ii)  Avg CSR Comm Time         : .312987 sec
-(iii) Avg CSR Calculation Time  : .586045 sec
-(iv)  Avg Dense Calculation Time: .364060 sec
-(v)   Avg TOTAL CSR Time        : 1.369593 sec
-(vi)  Avg TOTAL DENSE Time      : .605200 sec
+(i)   Avg CSR Construction Time : 2.145046 sec
+(ii)  Avg CSR Comm Time         : 5.143882 sec
+(iii) Avg CSR Calculation Time  : 1.643474 sec
+(iv)  Avg Dense Calculation Time: 1.182350 sec
+(v)   Avg TOTAL CSR Time        : 8.932403 sec
+(vi)  Avg TOTAL DENSE Time      : 5.946339 sec
+
+MPI Processes = 8
+===== AVERAGES =====
+(i)   Avg CSR Construction Time : 1.803802 sec
+(ii)  Avg CSR Comm Time         : 7.226904 sec
+(iii) Avg CSR Calculation Time  : .940015 sec
+(iv)  Avg Dense Calculation Time: .800201 sec
+(v)   Avg TOTAL CSR Time        : 9.970722 sec
+(vi)  Avg TOTAL DENSE Time      : 4.120407 sec
 
 
 Testing N = 10000, Sparsity = 0.50, Iterations = 10
 -------------------------------------
 MPI Processes = 1
 ===== AVERAGES =====
-(i)   Avg CSR Construction Time : .551661 sec
-(ii)  Avg CSR Comm Time         : .216169 sec
-(iii) Avg CSR Calculation Time  : .268622 sec
-(iv)  Avg Dense Calculation Time: .302413 sec
-(v)   Avg TOTAL CSR Time        : 1.036452 sec
-(vi)  Avg TOTAL DENSE Time      : .517098 sec
+(i)   Avg CSR Construction Time : 1.766415 sec
+(ii)  Avg CSR Comm Time         : 0 sec
+(iii) Avg CSR Calculation Time  : 1.003177 sec
+(iv)  Avg Dense Calculation Time: 1.293647 sec
+(v)   Avg TOTAL CSR Time        : 2.769592 sec
+(vi)  Avg TOTAL DENSE Time      : 1.293647 sec
 
 MPI Processes = 2
 ===== AVERAGES =====
-(i)   Avg CSR Construction Time : .594886 sec
-(ii)  Avg CSR Comm Time         : .256158 sec
-(iii) Avg CSR Calculation Time  : .200504 sec
-(iv)  Avg Dense Calculation Time: .199240 sec
-(v)   Avg TOTAL CSR Time        : 1.051549 sec
-(vi)  Avg TOTAL DENSE Time      : .433917 sec
+(i)   Avg CSR Construction Time : 1.930808 sec
+(ii)  Avg CSR Comm Time         : 7.662127 sec
+(iii) Avg CSR Calculation Time  : .567247 sec
+(iv)  Avg Dense Calculation Time: .624078 sec
+(v)   Avg TOTAL CSR Time        : 10.160183 sec
+(vi)  Avg TOTAL DENSE Time      : 1.846071 sec
 
 MPI Processes = 4
 ===== AVERAGES =====
-(i)   Avg CSR Construction Time : .606281 sec
-(ii)  Avg CSR Comm Time         : .254814 sec
-(iii) Avg CSR Calculation Time  : .198156 sec
-(iv)  Avg Dense Calculation Time: .212156 sec
-(v)   Avg TOTAL CSR Time        : 1.059252 sec
-(vi)  Avg TOTAL DENSE Time      : .560282 sec
+(i)   Avg CSR Construction Time : 2.052982 sec
+(ii)  Avg CSR Comm Time         : 2.065653 sec
+(iii) Avg CSR Calculation Time  : .499412 sec
+(iv)  Avg Dense Calculation Time: .522078 sec
+(v)   Avg TOTAL CSR Time        : 4.618048 sec
+(vi)  Avg TOTAL DENSE Time      : 2.697837 sec
+
+MPI Processes = 8
+===== AVERAGES =====
+(i)   Avg CSR Construction Time : 1.808427 sec
+(ii)  Avg CSR Comm Time         : 2.839910 sec
+(iii) Avg CSR Calculation Time  : .288693 sec
+(iv)  Avg Dense Calculation Time: .290832 sec
+(v)   Avg TOTAL CSR Time        : 4.937031 sec
+(vi)  Avg TOTAL DENSE Time      : 6.236809 sec
 
 
 Testing N = 10000, Sparsity = 0.50, Iterations = 20
 -------------------------------------
 MPI Processes = 1
 ===== AVERAGES =====
-(i)   Avg CSR Construction Time : .513756 sec
-(ii)  Avg CSR Comm Time         : .218053 sec
-(iii) Avg CSR Calculation Time  : .526163 sec
-(iv)  Avg Dense Calculation Time: .543599 sec
-(v)   Avg TOTAL CSR Time        : 1.257973 sec
-(vi)  Avg TOTAL DENSE Time      : .782787 sec
+(i)   Avg CSR Construction Time : 1.259041 sec
+(ii)  Avg CSR Comm Time         : 0 sec
+(iii) Avg CSR Calculation Time  : 1.493596 sec
+(iv)  Avg Dense Calculation Time: 1.888907 sec
+(v)   Avg TOTAL CSR Time        : 2.752638 sec
+(vi)  Avg TOTAL DENSE Time      : 1.888907 sec
 
 MPI Processes = 2
 ===== AVERAGES =====
-(i)   Avg CSR Construction Time : .524483 sec
-(ii)  Avg CSR Comm Time         : .198955 sec
-(iii) Avg CSR Calculation Time  : .414162 sec
-(iv)  Avg Dense Calculation Time: .406765 sec
-(v)   Avg TOTAL CSR Time        : 1.137602 sec
-(vi)  Avg TOTAL DENSE Time      : .618819 sec
+(i)   Avg CSR Construction Time : 1.587300 sec
+(ii)  Avg CSR Comm Time         : 1.104523 sec
+(iii) Avg CSR Calculation Time  : 1.048370 sec
+(iv)  Avg Dense Calculation Time: 1.183440 sec
+(v)   Avg TOTAL CSR Time        : 3.740194 sec
+(vi)  Avg TOTAL DENSE Time      : 2.153598 sec
 
 MPI Processes = 4
 ===== AVERAGES =====
-(i)   Avg CSR Construction Time : .561795 sec
-(ii)  Avg CSR Comm Time         : .210077 sec
-(iii) Avg CSR Calculation Time  : .387579 sec
-(iv)  Avg Dense Calculation Time: .366001 sec
-(v)   Avg TOTAL CSR Time        : 1.159452 sec
-(vi)  Avg TOTAL DENSE Time      : .620511 sec
+(i)   Avg CSR Construction Time : 2.216591 sec
+(ii)  Avg CSR Comm Time         : 2.212553 sec
+(iii) Avg CSR Calculation Time  : 1.014657 sec
+(iv)  Avg Dense Calculation Time: 1.027812 sec
+(v)   Avg TOTAL CSR Time        : 5.443802 sec
+(vi)  Avg TOTAL DENSE Time      : 2.952833 sec
+
+MPI Processes = 8
+===== AVERAGES =====
+(i)   Avg CSR Construction Time : 1.989897 sec
+(ii)  Avg CSR Comm Time         : 4.360467 sec
+(iii) Avg CSR Calculation Time  : .706018 sec
+(iv)  Avg Dense Calculation Time: .740441 sec
+(v)   Avg TOTAL CSR Time        : 7.056383 sec
+(vi)  Avg TOTAL DENSE Time      : 6.038588 sec
 
 
 Testing N = 10000, Sparsity = 0.80, Iterations = 10
 -------------------------------------
 MPI Processes = 1
 ===== AVERAGES =====
-(i)   Avg CSR Construction Time : .309716 sec
-(ii)  Avg CSR Comm Time         : .083825 sec
-(iii) Avg CSR Calculation Time  : .108640 sec
-(iv)  Avg Dense Calculation Time: .305808 sec
-(v)   Avg TOTAL CSR Time        : .502182 sec
-(vi)  Avg TOTAL DENSE Time      : .510568 sec
+(i)   Avg CSR Construction Time : .734773 sec
+(ii)  Avg CSR Comm Time         : 0 sec
+(iii) Avg CSR Calculation Time  : .279141 sec
+(iv)  Avg Dense Calculation Time: .943456 sec
+(v)   Avg TOTAL CSR Time        : 1.013914 sec
+(vi)  Avg TOTAL DENSE Time      : .943456 sec
 
 MPI Processes = 2
 ===== AVERAGES =====
-(i)   Avg CSR Construction Time : .319405 sec
-(ii)  Avg CSR Comm Time         : .095063 sec
-(iii) Avg CSR Calculation Time  : .081848 sec
-(iv)  Avg Dense Calculation Time: .216251 sec
-(v)   Avg TOTAL CSR Time        : .496317 sec
-(vi)  Avg TOTAL DENSE Time      : .474130 sec
+(i)   Avg CSR Construction Time : .689650 sec
+(ii)  Avg CSR Comm Time         : .257823 sec
+(iii) Avg CSR Calculation Time  : .249203 sec
+(iv)  Avg Dense Calculation Time: .514644 sec
+(v)   Avg TOTAL CSR Time        : 1.196677 sec
+(vi)  Avg TOTAL DENSE Time      : 1.421145 sec
 
 MPI Processes = 4
 ===== AVERAGES =====
-(i)   Avg CSR Construction Time : .333125 sec
-(ii)  Avg CSR Comm Time         : .099288 sec
-(iii) Avg CSR Calculation Time  : .078788 sec
-(iv)  Avg Dense Calculation Time: .197262 sec
-(v)   Avg TOTAL CSR Time        : .511202 sec
-(vi)  Avg TOTAL DENSE Time      : .443219 sec
+(i)   Avg CSR Construction Time : .950427 sec
+(ii)  Avg CSR Comm Time         : .970456 sec
+(iii) Avg CSR Calculation Time  : .255524 sec
+(iv)  Avg Dense Calculation Time: .426203 sec
+(v)   Avg TOTAL CSR Time        : 2.176407 sec
+(vi)  Avg TOTAL DENSE Time      : 2.175522 sec
+
+MPI Processes = 8
+===== AVERAGES =====
+(i)   Avg CSR Construction Time : 1.007202 sec
+(ii)  Avg CSR Comm Time         : 2.331766 sec
+(iii) Avg CSR Calculation Time  : .234595 sec
+(iv)  Avg Dense Calculation Time: .283704 sec
+(v)   Avg TOTAL CSR Time        : 3.573563 sec
+(vi)  Avg TOTAL DENSE Time      : 3.932035 sec
 
 
 Testing N = 10000, Sparsity = 0.80, Iterations = 20
 -------------------------------------
 MPI Processes = 1
 ===== AVERAGES =====
-(i)   Avg CSR Construction Time : .324343 sec
-(ii)  Avg CSR Comm Time         : .092207 sec
-(iii) Avg CSR Calculation Time  : .203644 sec
-(iv)  Avg Dense Calculation Time: .619194 sec
-(v)   Avg TOTAL CSR Time        : .620195 sec
-(vi)  Avg TOTAL DENSE Time      : .850001 sec
+(i)   Avg CSR Construction Time : .720664 sec
+(ii)  Avg CSR Comm Time         : 0 sec
+(iii) Avg CSR Calculation Time  : .642712 sec
+(iv)  Avg Dense Calculation Time: 1.841587 sec
+(v)   Avg TOTAL CSR Time        : 1.363377 sec
+(vi)  Avg TOTAL DENSE Time      : 1.841587 sec
 
 MPI Processes = 2
 ===== AVERAGES =====
-(i)   Avg CSR Construction Time : .297799 sec
-(ii)  Avg CSR Comm Time         : .104007 sec
-(iii) Avg CSR Calculation Time  : .182357 sec
-(iv)  Avg Dense Calculation Time: .428255 sec
-(v)   Avg TOTAL CSR Time        : .584165 sec
-(vi)  Avg TOTAL DENSE Time      : .677629 sec
+(i)   Avg CSR Construction Time : .802331 sec
+(ii)  Avg CSR Comm Time         : .397103 sec
+(iii) Avg CSR Calculation Time  : .422457 sec
+(iv)  Avg Dense Calculation Time: 1.008980 sec
+(v)   Avg TOTAL CSR Time        : 1.621892 sec
+(vi)  Avg TOTAL DENSE Time      : 1.848186 sec
 
 MPI Processes = 4
 ===== AVERAGES =====
-(i)   Avg CSR Construction Time : .295125 sec
-(ii)  Avg CSR Comm Time         : .103296 sec
-(iii) Avg CSR Calculation Time  : .145779 sec
-(iv)  Avg Dense Calculation Time: .410564 sec
-(v)   Avg TOTAL CSR Time        : .544201 sec
-(vi)  Avg TOTAL DENSE Time      : .658213 sec
+(i)   Avg CSR Construction Time : .919298 sec
+(ii)  Avg CSR Comm Time         : .885222 sec
+(iii) Avg CSR Calculation Time  : .475754 sec
+(iv)  Avg Dense Calculation Time: .857904 sec
+(v)   Avg TOTAL CSR Time        : 2.280275 sec
+(vi)  Avg TOTAL DENSE Time      : 2.764800 sec
+
+MPI Processes = 8
+===== AVERAGES =====
+(i)   Avg CSR Construction Time : .978487 sec
+(ii)  Avg CSR Comm Time         : 2.959608 sec
+(iii) Avg CSR Calculation Time  : .452768 sec
+(iv)  Avg Dense Calculation Time: .557018 sec
+(v)   Avg TOTAL CSR Time        : 4.390864 sec
+(vi)  Avg TOTAL DENSE Time      : 4.925618 sec
 
 
