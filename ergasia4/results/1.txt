@@ -1,0 +1,86 @@
+--------Polynomial Multiplication SIMD Benchmark--------
+
+Testing degree = 50000
+-------------------------------------
+Running: degree1 = 50000, degree2 = 50000
+
+Run 1:
+Generated polynomials in 0.003 seconds
+Sequential multiplication took 0.843 seconds
+SIMD multiplication took 0.218 seconds
+Match baseline: yes
+
+Run 2:
+Generated polynomials in 0.001 seconds
+Sequential multiplication took 0.858 seconds
+SIMD multiplication took 0.226 seconds
+Match baseline: yes
+
+Run 3:
+Generated polynomials in 0.001 seconds
+Sequential multiplication took 0.857 seconds
+SIMD multiplication took 0.220 seconds
+Match baseline: yes
+
+===== AVERAGES =====
+Sequential multiplication average: .8526 seconds
+SIMD Avg Time:       .221333 seconds
+Speedup (Seq/SIMD):  3.85x
+
+-------------------------------------
+Testing degree = 100000
+-------------------------------------
+Running: degree1 = 100000, degree2 = 100000
+
+Run 1:
+Generated polynomials in 0.003 seconds
+Sequential multiplication took 3.385 seconds
+SIMD multiplication took 0.919 seconds
+Match baseline: yes
+
+Run 2:
+Generated polynomials in 0.003 seconds
+Sequential multiplication took 3.329 seconds
+SIMD multiplication took 0.922 seconds
+Match baseline: yes
+
+Run 3:
+Generated polynomials in 0.003 seconds
+Sequential multiplication took 3.370 seconds
+SIMD multiplication took 0.926 seconds
+Match baseline: yes
+
+===== AVERAGES =====
+Sequential multiplication average: 3.3613 seconds
+SIMD Avg Time:       .922333 seconds
+Speedup (Seq/SIMD):  3.64x
+
+-------------------------------------
+Testing degree = 500000
+-------------------------------------
+Running: degree1 = 500000, degree2 = 500000
+
+Run 1:
+Generated polynomials in 0.016 seconds
+Sequential multiplication took 82.364 seconds
+SIMD multiplication took 38.998 seconds
+Match baseline: yes
+
+Run 2:
+Generated polynomials in 0.015 seconds
+Sequential multiplication took 82.278 seconds
+SIMD multiplication took 39.158 seconds
+Match baseline: yes
+
+Run 3:
+Generated polynomials in 0.015 seconds
+Sequential multiplication took 82.545 seconds
+SIMD multiplication took 38.984 seconds
+Match baseline: yes
+
+===== AVERAGES =====
+Sequential multiplication average: 82.3956 seconds
+SIMD Avg Time:       39.046666 seconds
+Speedup (Seq/SIMD):  2.11x
+
+-------------------------------------
